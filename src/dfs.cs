@@ -4,13 +4,13 @@ namespace HelloWorld
 {
     class Program
     {
-        static char[,] ConvertMap(string textFile)
+        static char[,] ConvertMap(string textFile, ref int row, ref int col)
         {
             // Read a text file line by line.
             string[] lines = File.ReadAllLines(textFile);
 
-            int row = lines.Length;
-            int col = lines[0].Split(' ').Length;
+            row = lines.Length;
+            col = lines[0].Split(' ').Length;
 
             int k;
 
@@ -29,32 +29,48 @@ namespace HelloWorld
                     Console.Write(map[i, j]);
                     k++;
                 }
+
                 Console.Write("\n");
             }
-
-            // foreach (string line in lines)
-            // {
-            //     foreach (char x in line)
-            //     {
-            //         if (x == 'K')
-            //         {
-            //             Console.WriteLine("ini K");
-            //         }
-            //         else if (x == 'R')
-            //         {
-            //             Console.WriteLine("ini R");
-            //         }
-            //     }
-            //     Console.WriteLine("pindah baris");
-            // }
-
 
             return map;
         }
 
+        static void InitStorage(char[,] map, int row, int col, ref int[] start, ref List<Tuple<int, int>> goal, ref List<Tuple<int, int>> track)
+        {
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    if (map[i, j] == 'K')
+                    {
+                        start[0] = i;
+                        start[1] = j;
+                    }
+                    else if (map[i, j] == 'T')
+                    {
+                        goal.Add(Tuple.Create(i, j));
+                    }
+                    else if (map[i, j] == 'R')
+                    {
+                        track.Add(Tuple.Create(i, j));
+                    }
+                }
+            }
+        }
+
         static void Main(string[] args)
         {
-            char[,] map = ConvertMap("../test/maze1.txt");
+            int row = 0;
+            int col = 0;
+
+            int[] start = new int[2];
+            var goal = new List<Tuple<int, int>> { };
+            var track = new List<Tuple<int, int>> { };
+            char[,] map = ConvertMap("../test/maze1.txt", ref row, ref col);
+            InitStorage(map, row, col, ref start, ref goal, ref track);
+
+
             // Console.WriteLine(map[0, 0]);
             // Console.WriteLine("Hello World!");
         }
