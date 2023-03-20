@@ -17,8 +17,15 @@ class Program
         goalStates.Add(new Tuple<int, int>(2, 1));
         goalStates.Add(new Tuple<int, int>(3, 1));
 
+        string path = "";
+        string pathPlan = "";
+        List<Tuple<int, int>> simpulHidup = new List<Tuple<int, int>>();
+        simpulHidup.Add(new Tuple<int, int>(0, 0));
+
         MazeSolver solver = new MazeSolver(maze, goalStates);
+        BFSMazeSolver solverb = new BFSMazeSolver(maze, goalStates);
         solver.Solve(0, 0, "");
+        solverb.Solve(ref path, ref pathPlan, ref simpulHidup);
     }
 }
 
