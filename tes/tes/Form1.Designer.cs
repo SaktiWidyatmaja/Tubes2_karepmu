@@ -278,7 +278,7 @@ namespace tes
             this.nodesLabel.AutoSize = true;
             this.nodesLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nodesLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.nodesLabel.Location = new System.Drawing.Point(1098, 779);
+            this.nodesLabel.Location = new System.Drawing.Point(1204, 779);
             this.nodesLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nodesLabel.Name = "nodesLabel";
             this.nodesLabel.Size = new System.Drawing.Size(116, 37);
@@ -292,7 +292,7 @@ namespace tes
             this.stepsLabel.AutoSize = true;
             this.stepsLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stepsLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.stepsLabel.Location = new System.Drawing.Point(1098, 731);
+            this.stepsLabel.Location = new System.Drawing.Point(1204, 731);
             this.stepsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.stepsLabel.Name = "stepsLabel";
             this.stepsLabel.Size = new System.Drawing.Size(117, 37);
@@ -338,6 +338,7 @@ namespace tes
             this.timeText.Size = new System.Drawing.Size(105, 37);
             this.timeText.TabIndex = 27;
             this.timeText.Text = "00.00 s";
+            this.timeText.Click += new System.EventHandler(this.timeText_Click);
             // 
             // stepsText
             // 
@@ -345,7 +346,7 @@ namespace tes
             this.stepsText.AutoSize = true;
             this.stepsText.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stepsText.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.stepsText.Location = new System.Drawing.Point(1230, 731);
+            this.stepsText.Location = new System.Drawing.Point(1336, 731);
             this.stepsText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.stepsText.Name = "stepsText";
             this.stepsText.Size = new System.Drawing.Size(32, 37);
@@ -358,7 +359,7 @@ namespace tes
             this.nodesText.AutoSize = true;
             this.nodesText.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nodesText.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.nodesText.Location = new System.Drawing.Point(1230, 779);
+            this.nodesText.Location = new System.Drawing.Point(1336, 779);
             this.nodesText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nodesText.Name = "nodesText";
             this.nodesText.Size = new System.Drawing.Size(32, 37);

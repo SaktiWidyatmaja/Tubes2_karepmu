@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -101,6 +102,9 @@ namespace tes
         {
             if (DFSbtn.Checked == true)
             {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
                 Console.WriteLine("search with DFS");
                 DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates);
                 path = solver.Solve(start[0], start[1], path);
@@ -119,6 +123,13 @@ namespace tes
                 stepsText.Text = path.Length.ToString();
                 nodesText.Text = solver.nodeCount.ToString();
                 // routeText.Refresh();
+
+                stopwatch.Stop();
+
+                TimeSpan elapsed = stopwatch.Elapsed;
+                timeText.Text = elapsed.TotalMilliseconds.ToString();
+                timeText.Text += " ms";
+
             }
         }
 
@@ -318,6 +329,11 @@ namespace tes
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timeText_Click(object sender, EventArgs e)
         {
 
         }
