@@ -11,7 +11,8 @@ namespace DFS
         private int numCols; // number of columns in the maze
         private List<Tuple<int, int>> goalStates; // list of goal states in the maze
         private int numGoalsVisited; // number of goal states visited in current path
-        private int pathCount;
+        private bool isFound;
+        public int nodeCount;
         private string path;
 
         public DFSMazeSolver(int[,] maze, List<Tuple<int, int>> goalStates)
@@ -22,19 +23,22 @@ namespace DFS
             this.visited = new bool[numRows, numCols];
             this.goalStates = goalStates;
             this.numGoalsVisited = 0;
-            this.pathCount = 0;
+            this.isFound = false;
+            this.nodeCount = 0;
             this.path = "";
         }
 
         public string Solve(int startRow, int startCol, string path)
         {
-            if (pathCount == 1)
+
+            if (isFound)
             {
                 return this.path;
             }
 
             // Mark current cell as visited
             visited[startRow, startCol] = true;
+            nodeCount++;
 
             // Check if current cell is a goal state
             if (IsGoalState(startRow, startCol))
@@ -46,11 +50,10 @@ namespace DFS
             // Check if all goal states have been visited
             if (numGoalsVisited == goalStates.Count)
             {
-                // routeText.Text = "Hi";
-                // routeText.Refresh();
                 Console.WriteLine("Path that visited all goal states: " + path);
+                Console.WriteLine("Nodes : " + nodeCount);
                 this.path = path;
-                pathCount += 1;
+                isFound = true;
                 return this.path;
             }
 
@@ -58,24 +61,41 @@ namespace DFS
             if (CanMove(startRow, startCol - 1)) // move left
             {
                 Solve(startRow, startCol - 1, path + "L");
+                if (isFound)
+                {
+                    return this.path;
+                }
             }
             if (CanMove(startRow, startCol + 1)) // move right
             {
                 Solve(startRow, startCol + 1, path + "R");
+                if (isFound)
+                {
+                    return this.path;
+                }
             }
             if (CanMove(startRow - 1, startCol)) // move up
             {
                 Solve(startRow - 1, startCol, path + "U");
+                if (isFound)
+                {
+                    return this.path;
+                }
             }
             if (CanMove(startRow + 1, startCol)) // move down
             {
                 Solve(startRow + 1, startCol, path + "D");
+                if (isFound)
+                {
+                    return this.path;
+                }
             }
 
             // BACKTRACKING
 
             // Mark current cell as unvisited 
             visited[startRow, startCol] = false;
+            nodeCount++;
 
             // Decrement number of goals visited (if necessary)
             if (IsGoalState(startRow, startCol))

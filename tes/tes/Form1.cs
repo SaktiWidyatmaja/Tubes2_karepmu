@@ -104,8 +104,20 @@ namespace tes
                 Console.WriteLine("search with DFS");
                 DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates);
                 path = solver.Solve(start[0], start[1], path);
-                routeText.Text = path;
-                // stepsText.Text = ToString(path.Count);
+
+                string routetext = "";
+                for (int i = 0; i < path.Length; i++)
+                {
+                    routetext += path[i];
+                    if (i != path.Length - 1)
+                    {
+                        routetext += " - ";
+                    }
+                }
+
+                routeText.Text = routetext;
+                stepsText.Text = path.Length.ToString();
+                nodesText.Text = solver.nodeCount.ToString();
                 // routeText.Refresh();
             }
         }
