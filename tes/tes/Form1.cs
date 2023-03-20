@@ -200,28 +200,28 @@ namespace tes
                 {
                     var pictureBox = new PictureBox();
 
-                    pictureBox.Location = new Point((j * 55) + 560, (i * 55) + 200);
+                    pictureBox.Location = new Point((j * 35) + 378, (i * 35) + 150);
                     
 
                     if (Map[i,j] == 'K')
                     {
                         pictureBox.BackColor = Color.Red;
-                        pictureBox.Size = new Size(40, 40);
+                        pictureBox.Size = new Size(20, 20);
                     }
                     else if (Map[i, j] == 'R')
                     {
                         pictureBox.BackColor = Color.White;
-                        pictureBox.Size = new Size(40, 40);
+                        pictureBox.Size = new Size(20, 20);
                     }
                     else if (Map[i, j] == 'T')
                     {
                         pictureBox.BackColor = Color.BlueViolet;
-                        pictureBox.Size = new Size(40, 40);
+                        pictureBox.Size = new Size(20, 20);
                     }
                     else if (Map[i, j] == 'X')
                     {
                         pictureBox.BackColor = Color.Black;
-                        pictureBox.Size = new Size(40, 40);
+                        pictureBox.Size = new Size(20, 20);
                     }
 
                     // set other properties of the picture box as needed
@@ -232,19 +232,14 @@ namespace tes
             }
             PictureBox backGroundMap = new PictureBox();
             backGroundMap.BackColor = Color.Black;
-            backGroundMap.Location = new Point(540, 180);
-            backGroundMap.Size = new Size(927, 494);
+            backGroundMap.Location = new Point(367, 124);
+            backGroundMap.Size = new Size(680, 460);
             Controls.Add(backGroundMap);
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-        
-        }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            panel1.Controls.Add(title);
         }
     }
 }
