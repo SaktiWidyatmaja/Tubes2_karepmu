@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using DFS;
 using System.Reflection.Emit;
+using System.Threading;
 
 namespace tes
 {
@@ -19,13 +20,13 @@ namespace tes
     {
         private int row = 0;
         private int col = 0;
-        private char[,] map = new char[0, 0];
+        private static char[,] map = new char[0, 0];
         private int[] start = new int[2];
         private string path = "";
         private static int[,] mapInt = new int[0, 0];
         private static List<Tuple<int, int>> goalStates = new List<Tuple<int, int>>();
 
-        private PictureBox[,] imageMatrix = new PictureBox[0,0];
+        private static PictureBox[,] imageMatrix = new PictureBox[0,0];
 
         public Form1()
         {
@@ -111,7 +112,8 @@ namespace tes
                 DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates);
                 
                 stopwatch.Start();
-                path = solver.Solve(start[0], start[1], path);
+                solver.Solve(start[0], start[1], path);
+                path = solver.path;
                 stopwatch.Stop();
 
                 string routetext = "";
@@ -135,23 +137,54 @@ namespace tes
                 timeText.Text += " ms";
 
 
-                for (int i = 0; i < this.row; i++)
+                //for (int i = 0; i < this.row; i++)
+                //{
+                //    for (int j = 0; j < this.col; j++)
+                //    {
+                //        if (solver.visited[i, j])
+                //        {
+                //            if (imageMatrix[i, j].BackColor == Color.White)
+                //            {
+                //                imageMatrix[i, j].BackColor = Color.Green;
+                //            } else if (imageMatrix[i,j].BackColor == Color.BlueViolet)
+                //            {
+                //                imageMatrix[i, j].BackColor = Color.Aqua;
+                //            }
+                //        }
+                //    }
+                //}
+            }
+        }
+
+        public static void outputRoute(int i, int j, bool isVisited)
+        {
+            Console.WriteLine("update gui color");
+            Application.DoEvents();
+            if (isVisited)
+            {
+                if (imageMatrix[i, j].BackColor == Color.White)
                 {
-                    for (int j = 0; j < this.col; j++)
-                    {
-                        if (solver.visited[i, j])
-                        {
-                            if (imageMatrix[i, j].BackColor == Color.White)
-                            {
-                                imageMatrix[i, j].BackColor = Color.Green;
-                            } else if (imageMatrix[i,j].BackColor == Color.BlueViolet)
-                            {
-                                imageMatrix[i, j].BackColor = Color.Aqua;
-                            }
-                        }
-                    }
+                    imageMatrix[i, j].BackColor = Color.Green;
+                }
+                else if (imageMatrix[i, j].BackColor == Color.BlueViolet)
+                {
+                    imageMatrix[i, j].BackColor = Color.Aqua;
+                } else
+                {
+                    imageMatrix[i, j].BackColor = Color.Pink;
+                }
+            } else
+            {
+                if (map[i, j] == 'R')
+                {
+                    imageMatrix[i,j].BackColor = Color.White;
+                }
+                else if (map[i, j] == 'T')
+                {
+                    imageMatrix[i, j].BackColor = Color.BlueViolet;
                 }
             }
+            Thread.Sleep(1000);
         }
 
         private void visualBtn_Click(object sender, EventArgs e)
@@ -284,9 +317,9 @@ namespace tes
 
             this.row = lines.Length;
             this.col = lines[0].Split(' ').Length;
-            this.map = ConvertMap(openFile1.FileName, this.row, this.col);
+            map = ConvertMap(openFile1.FileName, this.row, this.col);
 
-            int[,] MapInt = ConvertMapToInt(this.map, this.row, this.col, this.start);
+            int[,] MapInt = ConvertMapToInt(map, this.row, this.col, this.start);
 
             imageMatrix = new PictureBox[this.row, this.col];
 
@@ -299,22 +332,22 @@ namespace tes
                     pictureBox.Location = new Point((j * 35) + 638, (i * 35) + 150);
 
 
-                    if (this.map[i, j] == 'K')
+                    if (map[i, j] == 'K')
                     {
                         pictureBox.BackColor = Color.Red;
                         pictureBox.Size = new Size(20, 20);
                     }
-                    else if (this.map[i, j] == 'R')
+                    else if (map[i, j] == 'R')
                     {
                         pictureBox.BackColor = Color.White;
                         pictureBox.Size = new Size(20, 20);
                     }
-                    else if (this.map[i, j] == 'T')
+                    else if (map[i, j] == 'T')
                     {
                         pictureBox.BackColor = Color.BlueViolet;
                         pictureBox.Size = new Size(20, 20);
                     }
-                    else if (this.map[i, j] == 'X')
+                    else if (map[i, j] == 'X')
                     {
                         pictureBox.BackColor = Color.Black;
                         pictureBox.Size = new Size(20, 20);

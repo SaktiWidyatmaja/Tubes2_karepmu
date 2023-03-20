@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
-
+using System.Threading;
+using System.Threading.Tasks;
+using tes;
 
 namespace DFS
 {
@@ -14,7 +16,7 @@ namespace DFS
         private int numGoalsVisited; // number of goal states visited in current path
         private bool isFound;
         public int nodeCount;
-        private string path;
+        public string path;
 
         public DFSMazeSolver(int[,] maze, List<Tuple<int, int>> goalStates)
         {
@@ -29,16 +31,18 @@ namespace DFS
             this.path = "";
         }
 
-        public string Solve(int startRow, int startCol, string path)
+        public void Solve(int startRow, int startCol, string path)
         {
 
             if (isFound)
             {
-                return this.path;
+                return;
             }
 
             // Mark current cell as visited
             visited[startRow, startCol] = true;
+            Form1.outputRoute(startRow, startCol, true);
+            Console.WriteLine("currentpath " + path);
             nodeCount++;
 
             // Check if current cell is a goal state
@@ -55,7 +59,7 @@ namespace DFS
                 Console.WriteLine("Nodes : " + nodeCount);
                 this.path = path;
                 isFound = true;
-                return this.path;
+                return;
             }
 
             // Check all possible moves from current cell
@@ -64,7 +68,7 @@ namespace DFS
                 Solve(startRow, startCol - 1, path + "L");
                 if (isFound)
                 {
-                    return this.path;
+                    return;
                 }
             }
             if (CanMove(startRow, startCol + 1)) // move right
@@ -72,7 +76,7 @@ namespace DFS
                 Solve(startRow, startCol + 1, path + "R");
                 if (isFound)
                 {
-                    return this.path;
+                    return;
                 }
             }
             if (CanMove(startRow - 1, startCol)) // move up
@@ -80,7 +84,7 @@ namespace DFS
                 Solve(startRow - 1, startCol, path + "U");
                 if (isFound)
                 {
-                    return this.path;
+                    return;
                 }
             }
             if (CanMove(startRow + 1, startCol)) // move down
@@ -88,7 +92,7 @@ namespace DFS
                 Solve(startRow + 1, startCol, path + "D");
                 if (isFound)
                 {
-                    return this.path;
+                    return;
                 }
             }
 
@@ -96,6 +100,8 @@ namespace DFS
 
             // Mark current cell as unvisited 
             visited[startRow, startCol] = false;
+            Form1.outputRoute(startRow, startCol, false);
+            Console.WriteLine("backtrack " + path);
             nodeCount++;
 
             // Decrement number of goals visited (if necessary)
@@ -103,7 +109,7 @@ namespace DFS
             {
                 numGoalsVisited--;
             }
-            return this.path;
+            return;
         }
 
         private bool IsGoalState(int row, int col)
