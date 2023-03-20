@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 
+
 namespace DFS
 {
     public class DFSMazeSolver
     {
         private int[,] maze; // a 2D array representing the maze
-        private bool[,] visited; // a 2D array keeping track of visited cells
+        public bool[,] visited; // a 2D array keeping track of visited cells
         private int numRows; // number of rows in the maze
         private int numCols; // number of columns in the maze
         private List<Tuple<int, int>> goalStates; // list of goal states in the maze

@@ -25,6 +25,8 @@ namespace tes
         private static int[,] mapInt = new int[0, 0];
         private static List<Tuple<int, int>> goalStates = new List<Tuple<int, int>>();
 
+        private PictureBox[,] imageMatrix = new PictureBox[0,0];
+
         public Form1()
         {
             InitializeComponent();
@@ -102,12 +104,15 @@ namespace tes
         {
             if (DFSbtn.Checked == true)
             {
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
-
                 Console.WriteLine("search with DFS");
+                
+                Stopwatch stopwatch = new Stopwatch();
+
                 DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates);
+                
+                stopwatch.Start();
                 path = solver.Solve(start[0], start[1], path);
+                stopwatch.Stop();
 
                 string routetext = "";
                 for (int i = 0; i < path.Length; i++)
@@ -122,14 +127,30 @@ namespace tes
                 routeText.Text = routetext;
                 stepsText.Text = path.Length.ToString();
                 nodesText.Text = solver.nodeCount.ToString();
-                // routeText.Refresh();
+                routeText.Refresh();
 
-                stopwatch.Stop();
 
                 TimeSpan elapsed = stopwatch.Elapsed;
                 timeText.Text = elapsed.TotalMilliseconds.ToString();
                 timeText.Text += " ms";
 
+
+                for (int i = 0; i < this.row; i++)
+                {
+                    for (int j = 0; j < this.col; j++)
+                    {
+                        if (solver.visited[i, j])
+                        {
+                            if (imageMatrix[i, j].BackColor == Color.White)
+                            {
+                                imageMatrix[i, j].BackColor = Color.Green;
+                            } else if (imageMatrix[i,j].BackColor == Color.BlueViolet)
+                            {
+                                imageMatrix[i, j].BackColor = Color.Aqua;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -265,10 +286,9 @@ namespace tes
             this.col = lines[0].Split(' ').Length;
             this.map = ConvertMap(openFile1.FileName, this.row, this.col);
 
-            int[] start = new int[2];
             int[,] MapInt = ConvertMapToInt(this.map, this.row, this.col, this.start);
 
-            PictureBox[,] imageMatrix = new PictureBox[this.row, this.col];
+            imageMatrix = new PictureBox[this.row, this.col];
 
             for (int i = 0; i < this.row; i++)
             {
