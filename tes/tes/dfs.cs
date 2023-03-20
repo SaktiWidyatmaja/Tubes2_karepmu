@@ -44,6 +44,8 @@ namespace DFS
             // Check if all goal states have been visited
             if (numGoalsVisited == goalStates.Count)
             {
+                // routeText.Text = "Hi";
+                // routeText.Refresh();
                 Console.WriteLine("Path that visited all goal states: " + path);
                 pathCount += 1;
                 return;

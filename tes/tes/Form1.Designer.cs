@@ -45,7 +45,14 @@ namespace tes
             this.searchButtton = new System.Windows.Forms.Button();
             this.line = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
+            this.routeLabel = new System.Windows.Forms.Label();
+            this.nodesLabel = new System.Windows.Forms.Label();
+            this.stepsLabel = new System.Windows.Forms.Label();
+            this.timeLabel = new System.Windows.Forms.Label();
+            this.routeText = new System.Windows.Forms.Label();
+            this.timeText = new System.Windows.Forms.Label();
+            this.stepsText = new System.Windows.Forms.Label();
+            this.nodesText = new System.Windows.Forms.Label();
             this.SearchMethod.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.line)).BeginInit();
             this.SuspendLayout();
@@ -257,17 +264,96 @@ namespace tes
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // label1
+            // routeLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Corbel", 22F);
-            this.label1.ForeColor = System.Drawing.Color.DarkRed;
-            this.label1.Location = new System.Drawing.Point(387, 566);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 37);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "Nodes :";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.routeLabel.AutoSize = true;
+            this.routeLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.routeLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.routeLabel.Location = new System.Drawing.Point(377, 526);
+            this.routeLabel.Name = "routeLabel";
+            this.routeLabel.Size = new System.Drawing.Size(87, 29);
+            this.routeLabel.TabIndex = 22;
+            this.routeLabel.Text = "Route :";
+            this.routeLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // nodesLabel
+            // 
+            this.nodesLabel.AutoSize = true;
+            this.nodesLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nodesLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.nodesLabel.Location = new System.Drawing.Point(824, 565);
+            this.nodesLabel.Name = "nodesLabel";
+            this.nodesLabel.Size = new System.Drawing.Size(90, 29);
+            this.nodesLabel.TabIndex = 23;
+            this.nodesLabel.Text = "Nodes :";
+            this.nodesLabel.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // stepsLabel
+            // 
+            this.stepsLabel.AutoSize = true;
+            this.stepsLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stepsLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.stepsLabel.Location = new System.Drawing.Point(824, 526);
+            this.stepsLabel.Name = "stepsLabel";
+            this.stepsLabel.Size = new System.Drawing.Size(93, 29);
+            this.stepsLabel.TabIndex = 24;
+            this.stepsLabel.Text = "Steps   :";
+            this.stepsLabel.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // timeLabel
+            // 
+            this.timeLabel.AutoSize = true;
+            this.timeLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.timeLabel.Location = new System.Drawing.Point(377, 565);
+            this.timeLabel.Name = "timeLabel";
+            this.timeLabel.Size = new System.Drawing.Size(181, 29);
+            this.timeLabel.TabIndex = 25;
+            this.timeLabel.Text = "Execution time :";
+            // 
+            // routeText
+            // 
+            this.routeText.AutoSize = true;
+            this.routeText.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.routeText.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.routeText.Location = new System.Drawing.Point(470, 526);
+            this.routeText.Name = "routeText";
+            this.routeText.Size = new System.Drawing.Size(168, 29);
+            this.routeText.TabIndex = 26;
+            this.routeText.Text = "No route found";
+            // 
+            // timeText
+            // 
+            this.timeText.AutoSize = true;
+            this.timeText.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeText.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.timeText.Location = new System.Drawing.Point(564, 565);
+            this.timeText.Name = "timeText";
+            this.timeText.Size = new System.Drawing.Size(83, 29);
+            this.timeText.TabIndex = 27;
+            this.timeText.Text = "00.00 s";
+            // 
+            // stepsText
+            // 
+            this.stepsText.AutoSize = true;
+            this.stepsText.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stepsText.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.stepsText.Location = new System.Drawing.Point(923, 526);
+            this.stepsText.Name = "stepsText";
+            this.stepsText.Size = new System.Drawing.Size(25, 29);
+            this.stepsText.TabIndex = 28;
+            this.stepsText.Text = "0";
+            // 
+            // nodesText
+            // 
+            this.nodesText.AutoSize = true;
+            this.nodesText.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nodesText.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.nodesText.Location = new System.Drawing.Point(923, 565);
+            this.nodesText.Name = "nodesText";
+            this.nodesText.Size = new System.Drawing.Size(25, 29);
+            this.nodesText.TabIndex = 29;
+            this.nodesText.Text = "0";
             // 
             // Form1
             // 
@@ -275,7 +361,14 @@ namespace tes
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1028, 716);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.nodesText);
+            this.Controls.Add(this.stepsText);
+            this.Controls.Add(this.timeText);
+            this.Controls.Add(this.routeText);
+            this.Controls.Add(this.timeLabel);
+            this.Controls.Add(this.stepsLabel);
+            this.Controls.Add(this.nodesLabel);
+            this.Controls.Add(this.routeLabel);
             this.Controls.Add(this.line);
             this.Controls.Add(this.searchButtton);
             this.Controls.Add(this.outputLabel);
@@ -315,7 +408,14 @@ namespace tes
         internal System.Windows.Forms.Button searchButtton;
         internal System.Windows.Forms.PictureBox line;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label routeLabel;
+        private System.Windows.Forms.Label nodesLabel;
+        private System.Windows.Forms.Label stepsLabel;
+        private System.Windows.Forms.Label timeLabel;
+        private System.Windows.Forms.Label routeText;
+        private System.Windows.Forms.Label timeText;
+        private System.Windows.Forms.Label stepsText;
+        private System.Windows.Forms.Label nodesText;
     }
 }
 
