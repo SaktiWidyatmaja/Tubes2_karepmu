@@ -6,8 +6,9 @@ using System.Windows.Forms;
 
 namespace tes
 {
-    internal static class Program
+    internal class Program
     {
+        // DFSMazeSolver ms = new DFSMazeSolver();
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

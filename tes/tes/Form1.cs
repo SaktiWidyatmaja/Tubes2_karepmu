@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Security.Cryptography;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,11 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using DFS;
 
 namespace tes
 {
     public partial class Form1 : Form
     {
+        private int row = 0;
+        private int col = 0;
+        private char[,] map = new char[0, 0];
+        private int[] start = new int[2];
+        private static int[,] mapInt = new int[0, 0];
+        private static List<Tuple<int, int>> goalStates = new List<Tuple<int, int>>();
+
         public Form1()
         {
             InitializeComponent();
@@ -35,7 +44,7 @@ namespace tes
 
         private void fileNamePlace_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private System.Windows.Forms.OpenFileDialog openFile1 = new OpenFileDialog();
@@ -88,7 +97,13 @@ namespace tes
 
         private void searchButtton_Click(object sender, EventArgs e)
         {
-
+            if (DFSbtn.Checked == true)
+            {
+                Console.WriteLine("search with DFS");
+                DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates);
+                solver.Solve(this.start[0], this.start[1], "");
+                // DFSbtn_CheckedChanged(sender, e);
+            }
         }
 
         private void visualBtn_Click(object sender, EventArgs e)
@@ -129,17 +144,18 @@ namespace tes
                 {
                     var pictureBox = new PictureBox();
 
-                    pictureBox.Location = new Point(j*4 + 1253, i*4 - 201);
+                    pictureBox.Location = new Point(j * 4 + 1253, i * 4 - 201);
                     pictureBox.Size = new Size(3, 3);
 
-                    if (route == 'K') 
+                    if (route == 'K')
                     {
                         pictureBox.BackColor = Color.Black;
-                    } 
+                    }
                     else if (route == 'R')
                     {
                         pictureBox.BackColor = Color.Black;
-                    } else if (route == 'T')
+                    }
+                    else if (route == 'T')
                     {
                         pictureBox.BackColor = Color.Black;
                     }
@@ -152,13 +168,43 @@ namespace tes
             }
         }
 
-        static char[,] ConvertMap(string textFile, ref int row, ref int col)
+        private int[,] ConvertMapToInt(char[,] map, int row, int col, int[] start)
+        {
+            mapInt = new int[row, col];
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    if (map[i, j] == 'X')
+                    {
+                        mapInt[i, j] = 1;
+                    }
+                    else
+                    {
+                        if (map[i, j] == 'K')
+                        {
+                            start[0] = i;
+                            start[1] = j;
+                        }
+                        else if (map[i, j] == 'T')
+                        {
+                            goalStates.Add(new Tuple<int, int>(i, j));
+                        }
+                        mapInt[i, j] = 0;
+                    }
+                    
+                }
+            }
+            return mapInt;
+        }
+
+        private char[,] ConvertMap(string textFile, int row, int col)
         {
             // Read a text file line by line.
             string[] lines = System.IO.File.ReadAllLines(textFile);
 
-            row = lines.Length;
-            col = lines[0].Split(' ').Length;
+            this.row = lines.Length;
+            this.col = lines[0].Split(' ').Length;
 
             int k;
 
@@ -185,40 +231,43 @@ namespace tes
         }
 
         private void Map()
-        { 
+        {
             string[] lines = System.IO.File.ReadAllLines(openFile1.FileName);
 
-            int row = lines.Length;
-            int col = lines[0].Split(' ').Length;
-            char[,] Map = ConvertMap(openFile1.FileName, ref row, ref col);
+            this.row = lines.Length;
+            this.col = lines[0].Split(' ').Length;
+            this.map = ConvertMap(openFile1.FileName, this.row, this.col);
 
-            PictureBox[,] imageMatrix = new PictureBox[row, col];
+            int[] start = new int[2];
+            int[,] MapInt = ConvertMapToInt(this.map, this.row, this.col, this.start);
 
-            for (int i = 0; i < row; i++)
+            PictureBox[,] imageMatrix = new PictureBox[this.row, this.col];
+
+            for (int i = 0; i < this.row; i++)
             {
-                for (int j = 0; j < col; j++)
+                for (int j = 0; j < this.col; j++)
                 {
                     var pictureBox = new PictureBox();
 
                     pictureBox.Location = new Point((j * 35) + 378, (i * 35) + 150);
-                    
 
-                    if (Map[i,j] == 'K')
+
+                    if (this.map[i, j] == 'K')
                     {
                         pictureBox.BackColor = Color.Red;
                         pictureBox.Size = new Size(20, 20);
                     }
-                    else if (Map[i, j] == 'R')
+                    else if (this.map[i, j] == 'R')
                     {
                         pictureBox.BackColor = Color.White;
                         pictureBox.Size = new Size(20, 20);
                     }
-                    else if (Map[i, j] == 'T')
+                    else if (this.map[i, j] == 'T')
                     {
                         pictureBox.BackColor = Color.BlueViolet;
                         pictureBox.Size = new Size(20, 20);
                     }
-                    else if (Map[i, j] == 'X')
+                    else if (this.map[i, j] == 'X')
                     {
                         pictureBox.BackColor = Color.Black;
                         pictureBox.Size = new Size(20, 20);
@@ -238,6 +287,11 @@ namespace tes
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
