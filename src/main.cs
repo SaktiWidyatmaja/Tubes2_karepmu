@@ -26,6 +26,7 @@ class Program
         BFSMazeSolver solverb = new BFSMazeSolver(maze, goalStates);
         solver.Solve(0, 0, "");
         solverb.Solve(ref path, ref pathPlan, ref simpulHidup);
+        solverb.Solve2(ref path, ref pathPlan, ref simpulHidup);
     }
 }
 

@@ -123,68 +123,61 @@ public class BFSMazeSolver
         return true;
     }
 
-    public void Solve2(ref string path, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup)
+    public void Solve2(ref string path, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup, Tuple<int, int> goalState)
     {
         int startRow = simpulHidup[0].Item1;
         int startCol = simpulHidup[0].Item2;
-
-        Queue<Tuple<int, int>> queue = new Queue<Tuple<int, int>>();
-        queue.Enqueue(new Tuple<int, int>(startRow, startCol));
-
-        while (queue.Count > 0)
-        {
-            Tuple<int, int> current = queue.Dequeue();
-            int row = current.Item1;
-            int col = current.Item2;
-
-            // Check if current cell is a goal state
-            if (IsGoalState(row, col))
-            {
-                // Increment number of goals visited and add path to current goal state to paths list
-                numGoalsVisited++;
-            }
-
-            // Mark current cell as visited
-            visited[row, col] = true;
-
-            // Check if all goal states have been visited
-            if (numGoalsVisited == goalStates.Count)
-            {
-                Console.WriteLine("Path that visited all goal states: " + path);
-                pathCount += 1;
-                return;
-            }
-
-            // Check all possible moves from current cell
-            if (CanMove(row, col - 1)) // move left
-            {
-                queue.Enqueue(new Tuple<int, int>(row, col - 1));
-                visited[row, col - 1] = true;
-                pathPlan += "L";
-                simpulHidup.Add(new Tuple<int, int>(row, col - 1));
-            }
-            if (CanMove(row, col + 1)) // move right
-            {
-                queue.Enqueue(new Tuple<int, int>(row, col + 1));
-                visited[row, col + 1] = true;
-                pathPlan += "R";
-                simpulHidup.Add(new Tuple<int, int>(row, col + 1));
-            }
-            if (CanMove(row - 1, col)) // move up
-            {
-                queue.Enqueue(new Tuple<int, int>(row - 1, col));
-                visited[row - 1, col] = true;
-                pathPlan += "U";
-                simpulHidup.Add(new Tuple<int, int>(row - 1, col));
-            }
-            if (CanMove(row + 1, col)) // move down
-            {
-                queue.Enqueue(new Tuple<int, int>(row + 1, col));
-                visited[row + 1, col] = true;
-                pathPlan += "D";
-                simpulHidup.Add(new Tuple<int, int>(row + 1, col));
-            }
+        if (pathPlan != ""){
+            path += pathPlan[0];
+            pathPlan = pathPlan.Remove(0,1);
         }
-    }
+        simpulHidup.RemoveAt(0);
 
+        // Check if current cell is the goal state
+        if (startRow == goalState.Item1 && startCol == goalState.Item2)
+        {
+            Console.WriteLine("Path that visited goal state: " + path);
+            return;
+        }
+
+        // Mark current cell as visited
+        visited[startRow, startCol] = true;
+
+        // Check all possible moves from current cell
+        if (CanMove(startRow, startCol - 1)) // move left
+        {
+            pathPlan += "L";
+            simpulHidup.Add(new Tuple<int, int>(startRow, startCol-1));
+            Solve(ref path, ref pathPlan, ref simpulHidup, goalState);
+            simpulHidup.RemoveAt(simpulHidup.Count - 1);
+            pathPlan = pathPlan.Remove(pathPlan.Length - 1);
+        }
+        if (CanMove(startRow, startCol + 1)) // move right
+        {
+            pathPlan += "R";
+            simpulHidup.Add(new Tuple<int, int>(startRow, startCol+1));
+            Solve(ref path, ref pathPlan, ref simpulHidup, goalState);
+            simpulHidup.RemoveAt(simpulHidup.Count - 1);
+            pathPlan = pathPlan.Remove(pathPlan.Length - 1);
+        }
+        if (CanMove(startRow - 1, startCol)) // move up
+        {
+            pathPlan += "U";
+            simpulHidup.Add(new Tuple<int, int>(startRow-1, startCol));
+            Solve(ref path, ref pathPlan, ref simpulHidup, goalState);
+            simpulHidup.RemoveAt(simpulHidup.Count - 1);
+            pathPlan = pathPlan.Remove(pathPlan.Length - 1);
+        }
+        if (CanMove(startRow + 1, startCol)) // move down
+        {
+            pathPlan += "D";
+            simpulHidup.Add(new Tuple<int, int>(startRow+1, startCol));
+            Solve(ref path, ref pathPlan, ref simpulHidup, goalState);
+            simpulHidup.RemoveAt(simpulHidup.Count - 1);
+            pathPlan = pathPlan.Remove(pathPlan.Length - 1);
+        }
+
+        // Mark current cell as unvisited
+        visited[startRow, startCol] = false;
+    }
 }
