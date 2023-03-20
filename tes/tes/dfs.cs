@@ -12,6 +12,7 @@ namespace DFS
         private List<Tuple<int, int>> goalStates; // list of goal states in the maze
         private int numGoalsVisited; // number of goal states visited in current path
         private int pathCount;
+        private string path;
 
         public DFSMazeSolver(int[,] maze, List<Tuple<int, int>> goalStates)
         {
@@ -22,13 +23,14 @@ namespace DFS
             this.goalStates = goalStates;
             this.numGoalsVisited = 0;
             this.pathCount = 0;
+            this.path = "";
         }
 
-        public void Solve(int startRow, int startCol, string path)
+        public string Solve(int startRow, int startCol, string path)
         {
             if (pathCount == 1)
             {
-                return;
+                return this.path;
             }
 
             // Mark current cell as visited
@@ -47,8 +49,9 @@ namespace DFS
                 // routeText.Text = "Hi";
                 // routeText.Refresh();
                 Console.WriteLine("Path that visited all goal states: " + path);
+                this.path = path;
                 pathCount += 1;
-                return;
+                return this.path;
             }
 
             // Check all possible moves from current cell
@@ -79,7 +82,7 @@ namespace DFS
             {
                 numGoalsVisited--;
             }
-
+            return this.path;
         }
 
         private bool IsGoalState(int row, int col)

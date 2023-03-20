@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using DFS;
+using System.Reflection.Emit;
 
 namespace tes
 {
@@ -19,6 +20,7 @@ namespace tes
         private int col = 0;
         private char[,] map = new char[0, 0];
         private int[] start = new int[2];
+        private string path = "";
         private static int[,] mapInt = new int[0, 0];
         private static List<Tuple<int, int>> goalStates = new List<Tuple<int, int>>();
 
@@ -101,8 +103,10 @@ namespace tes
             {
                 Console.WriteLine("search with DFS");
                 DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates);
-                solver.Solve(this.start[0], this.start[1], "");
-                // DFSbtn_CheckedChanged(sender, e);
+                path = solver.Solve(start[0], start[1], path);
+                routeText.Text = path;
+                // stepsText.Text = ToString(path.Count);
+                // routeText.Refresh();
             }
         }
 
