@@ -249,7 +249,7 @@ namespace tes
                 {
                     var pictureBox = new PictureBox();
 
-                    pictureBox.Location = new Point((j * 35) + 378, (i * 35) + 150);
+                    pictureBox.Location = new Point((j * 35) + 638, (i * 35) + 150);
 
 
                     if (this.map[i, j] == 'K')
@@ -281,7 +281,7 @@ namespace tes
             }
             PictureBox backGroundMap = new PictureBox();
             backGroundMap.BackColor = Color.Black;
-            backGroundMap.Location = new Point(367, 124);
+            backGroundMap.Location = new Point(627, 124);
             backGroundMap.Size = new Size(680, 460);
             Controls.Add(backGroundMap);
         }
