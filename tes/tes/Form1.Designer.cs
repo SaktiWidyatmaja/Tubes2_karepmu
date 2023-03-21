@@ -53,8 +53,13 @@ namespace tes
             this.timeText = new System.Windows.Forms.Label();
             this.stepsText = new System.Windows.Forms.Label();
             this.nodesText = new System.Windows.Forms.Label();
+            this.TSPcheckbox = new System.Windows.Forms.CheckBox();
+            this.sleepLabel = new System.Windows.Forms.Label();
+            this.sleepInputBox = new System.Windows.Forms.NumericUpDown();
+            this.msSleep = new System.Windows.Forms.Label();
             this.SearchMethod.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.line)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sleepInputBox)).BeginInit();
             this.SuspendLayout();
             // 
             // title
@@ -124,7 +129,7 @@ namespace tes
             this.openFileBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openFileBtn.ForeColor = System.Drawing.Color.Chartreuse;
             this.openFileBtn.Location = new System.Drawing.Point(69, 283);
-            this.openFileBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.openFileBtn.Margin = new System.Windows.Forms.Padding(2);
             this.openFileBtn.MaximumSize = new System.Drawing.Size(98, 28);
             this.openFileBtn.MinimumSize = new System.Drawing.Size(98, 28);
             this.openFileBtn.Name = "openFileBtn";
@@ -157,11 +162,11 @@ namespace tes
             this.SearchMethod.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SearchMethod.ForeColor = System.Drawing.Color.Transparent;
             this.SearchMethod.Location = new System.Drawing.Point(69, 407);
-            this.SearchMethod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchMethod.Margin = new System.Windows.Forms.Padding(2);
             this.SearchMethod.MaximumSize = new System.Drawing.Size(112, 122);
             this.SearchMethod.MinimumSize = new System.Drawing.Size(112, 122);
             this.SearchMethod.Name = "SearchMethod";
-            this.SearchMethod.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchMethod.Padding = new System.Windows.Forms.Padding(2);
             this.SearchMethod.Size = new System.Drawing.Size(112, 122);
             this.SearchMethod.TabIndex = 17;
             this.SearchMethod.TabStop = false;
@@ -173,7 +178,7 @@ namespace tes
             this.DFSbtn.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DFSbtn.ForeColor = System.Drawing.Color.DarkRed;
             this.DFSbtn.Location = new System.Drawing.Point(4, 17);
-            this.DFSbtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DFSbtn.Margin = new System.Windows.Forms.Padding(2);
             this.DFSbtn.Name = "DFSbtn";
             this.DFSbtn.Size = new System.Drawing.Size(89, 41);
             this.DFSbtn.TabIndex = 1;
@@ -188,7 +193,7 @@ namespace tes
             this.BFSbtn.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BFSbtn.ForeColor = System.Drawing.Color.DarkRed;
             this.BFSbtn.Location = new System.Drawing.Point(4, 62);
-            this.BFSbtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BFSbtn.Margin = new System.Windows.Forms.Padding(2);
             this.BFSbtn.Name = "BFSbtn";
             this.BFSbtn.Size = new System.Drawing.Size(87, 41);
             this.BFSbtn.TabIndex = 2;
@@ -204,7 +209,7 @@ namespace tes
             this.visualBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualBtn.ForeColor = System.Drawing.Color.Transparent;
             this.visualBtn.Location = new System.Drawing.Point(166, 686);
-            this.visualBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.visualBtn.Margin = new System.Windows.Forms.Padding(2);
             this.visualBtn.MaximumSize = new System.Drawing.Size(135, 41);
             this.visualBtn.MinimumSize = new System.Drawing.Size(135, 41);
             this.visualBtn.Name = "visualBtn";
@@ -235,7 +240,7 @@ namespace tes
             this.searchButtton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchButtton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.searchButtton.Location = new System.Drawing.Point(728, 686);
-            this.searchButtton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.searchButtton.Margin = new System.Windows.Forms.Padding(2);
             this.searchButtton.MaximumSize = new System.Drawing.Size(135, 41);
             this.searchButtton.MinimumSize = new System.Drawing.Size(135, 41);
             this.searchButtton.Name = "searchButtton";
@@ -250,7 +255,7 @@ namespace tes
             this.line.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.line.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.line.Location = new System.Drawing.Point(400, 94);
-            this.line.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.line.Margin = new System.Windows.Forms.Padding(2);
             this.line.MaximumSize = new System.Drawing.Size(1, 650);
             this.line.MinimumSize = new System.Drawing.Size(1, 650);
             this.line.Name = "line";
@@ -364,12 +369,72 @@ namespace tes
             this.nodesText.TabIndex = 29;
             this.nodesText.Text = "0";
             // 
+            // TSPcheckbox
+            // 
+            this.TSPcheckbox.AutoSize = true;
+            this.TSPcheckbox.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold);
+            this.TSPcheckbox.ForeColor = System.Drawing.Color.DarkRed;
+            this.TSPcheckbox.Location = new System.Drawing.Point(227, 432);
+            this.TSPcheckbox.Name = "TSPcheckbox";
+            this.TSPcheckbox.Size = new System.Drawing.Size(74, 33);
+            this.TSPcheckbox.TabIndex = 30;
+            this.TSPcheckbox.Text = "TSP";
+            this.TSPcheckbox.UseVisualStyleBackColor = true;
+            // 
+            // sleepLabel
+            // 
+            this.sleepLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.sleepLabel.AutoSize = true;
+            this.sleepLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sleepLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.sleepLabel.Location = new System.Drawing.Point(71, 594);
+            this.sleepLabel.Name = "sleepLabel";
+            this.sleepLabel.Size = new System.Drawing.Size(122, 29);
+            this.sleepLabel.TabIndex = 32;
+            this.sleepLabel.Text = "Sleep time";
+            // 
+            // sleepInputBox
+            // 
+            this.sleepInputBox.Font = new System.Drawing.Font("Corbel", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sleepInputBox.Increment = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.sleepInputBox.Location = new System.Drawing.Point(208, 594);
+            this.sleepInputBox.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.sleepInputBox.Name = "sleepInputBox";
+            this.sleepInputBox.Size = new System.Drawing.Size(93, 33);
+            this.sleepInputBox.TabIndex = 33;
+            this.sleepInputBox.ValueChanged += new System.EventHandler(this.sleepInputBox_ValueChanged);
+            // 
+            // msSleep
+            // 
+            this.msSleep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.msSleep.AutoSize = true;
+            this.msSleep.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.msSleep.ForeColor = System.Drawing.Color.DarkRed;
+            this.msSleep.Location = new System.Drawing.Point(317, 594);
+            this.msSleep.Name = "msSleep";
+            this.msSleep.Size = new System.Drawing.Size(43, 29);
+            this.msSleep.TabIndex = 34;
+            this.msSleep.Text = "ms";
+            this.msSleep.Click += new System.EventHandler(this.label1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1145, 749);
+            this.Controls.Add(this.msSleep);
+            this.Controls.Add(this.sleepInputBox);
+            this.Controls.Add(this.sleepLabel);
+            this.Controls.Add(this.TSPcheckbox);
             this.Controls.Add(this.nodesText);
             this.Controls.Add(this.stepsText);
             this.Controls.Add(this.timeText);
@@ -389,13 +454,14 @@ namespace tes
             this.Controls.Add(this.filenameLabel);
             this.Controls.Add(this.inputLabel);
             this.Controls.Add(this.title);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SearchMethod.ResumeLayout(false);
             this.SearchMethod.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.line)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sleepInputBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,6 +491,10 @@ namespace tes
         private System.Windows.Forms.Label timeText;
         private System.Windows.Forms.Label stepsText;
         private System.Windows.Forms.Label nodesText;
+        private System.Windows.Forms.CheckBox TSPcheckbox;
+        private System.Windows.Forms.Label sleepLabel;
+        private System.Windows.Forms.NumericUpDown sleepInputBox;
+        private System.Windows.Forms.Label msSleep;
     }
 }
 

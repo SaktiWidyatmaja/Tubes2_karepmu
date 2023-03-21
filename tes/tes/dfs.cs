@@ -31,7 +31,7 @@ namespace DFS
             this.path = "";
         }
 
-        public void Solve(int startRow, int startCol, string path)
+        public void Solve(int startRow, int startCol, string path, int sleepTime)
         {
 
             if (isFound)
@@ -41,7 +41,7 @@ namespace DFS
 
             // Mark current cell as visited
             visited[startRow, startCol] = true;
-            Form1.outputRoute(startRow, startCol, true);
+            Form1.outputRoute(startRow, startCol, true, sleepTime);
             Console.WriteLine("currentpath " + path);
             nodeCount++;
 
@@ -65,7 +65,7 @@ namespace DFS
             // Check all possible moves from current cell
             if (CanMove(startRow, startCol - 1)) // move left
             {
-                Solve(startRow, startCol - 1, path + "L");
+                Solve(startRow, startCol - 1, path + "L", sleepTime);
                 if (isFound)
                 {
                     return;
@@ -73,7 +73,7 @@ namespace DFS
             }
             if (CanMove(startRow, startCol + 1)) // move right
             {
-                Solve(startRow, startCol + 1, path + "R");
+                Solve(startRow, startCol + 1, path + "R", sleepTime);
                 if (isFound)
                 {
                     return;
@@ -81,7 +81,7 @@ namespace DFS
             }
             if (CanMove(startRow - 1, startCol)) // move up
             {
-                Solve(startRow - 1, startCol, path + "U");
+                Solve(startRow - 1, startCol, path + "U", sleepTime);
                 if (isFound)
                 {
                     return;
@@ -89,7 +89,7 @@ namespace DFS
             }
             if (CanMove(startRow + 1, startCol)) // move down
             {
-                Solve(startRow + 1, startCol, path + "D");
+                Solve(startRow + 1, startCol, path + "D", sleepTime);
                 if (isFound)
                 {
                     return;
@@ -100,7 +100,7 @@ namespace DFS
 
             // Mark current cell as unvisited 
             visited[startRow, startCol] = false;
-            Form1.outputRoute(startRow, startCol, false);
+            Form1.outputRoute(startRow, startCol, false, sleepTime);
             Console.WriteLine("backtrack " + path);
             nodeCount++;
 

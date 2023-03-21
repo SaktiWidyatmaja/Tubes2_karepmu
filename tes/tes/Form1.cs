@@ -36,7 +36,7 @@ namespace tes
 
         private void title_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void inputLabel_Click(object sender, EventArgs e)
@@ -113,7 +113,7 @@ namespace tes
                 DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates);
                 
                 stopwatch.Start();
-                solver.Solve(start[0], start[1], path);
+                solver.Solve(start[0], start[1], path, Decimal.ToInt32(sleepInputBox.Value));
                 path = solver.path;
                 stopwatch.Stop();
 
@@ -219,7 +219,7 @@ namespace tes
         }
 
 
-        public static void outputRoute(int i, int j, bool isVisited)
+        public static void outputRoute(int i, int j, bool isVisited, int sleepTime)
         {
             Console.WriteLine("update gui color");
             Application.DoEvents();
@@ -247,7 +247,7 @@ namespace tes
                     imageMatrix[i, j].BackColor = Color.BlueViolet;
                 }
             }
-            Thread.Sleep(1000);
+            Thread.Sleep(sleepTime);
         }
 
         private void visualBtn_Click(object sender, EventArgs e)
@@ -450,6 +450,16 @@ namespace tes
         }
 
         private void timeText_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sleepInputBox_ValueChanged(object sender, EventArgs e)
         {
 
         }
