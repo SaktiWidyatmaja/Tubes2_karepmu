@@ -404,7 +404,14 @@ namespace WinForm
                 this.col = 0;
                 this.duration = 0;
 
-            }
+                map = new char[0, 0];
+                start = new int[2];
+                path = "";
+                mapInt = new int[0, 0];
+                goalStates = new List<Tuple<int, int>>();
+
+
+    }
 
 
 
