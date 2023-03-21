@@ -26,6 +26,7 @@ namespace tes
         private string path = "";
         private static int[,] mapInt = new int[0, 0];
         private static List<Tuple<int, int>> goalStates = new List<Tuple<int, int>>();
+        private double duration = 0;
 
         private static PictureBox[,] imageMatrix = new PictureBox[0,0];
 
@@ -134,7 +135,8 @@ namespace tes
 
 
                 TimeSpan elapsed = stopwatch.Elapsed;
-                timeText.Text = (elapsed.TotalMilliseconds/1000).ToString();
+                this.duration = elapsed.TotalMilliseconds/1000;
+                timeText.Text = this.duration.ToString();
                 timeText.Text += " s";
 
 
@@ -378,6 +380,33 @@ namespace tes
         {
             string[] lines = System.IO.File.ReadAllLines(openFile1.FileName);
 
+
+            // Kalau udah ada input file, hapus dulu semua data
+            if (this.row != 0)
+            {
+                for (int i = 0;i < row;i++) 
+                {
+                    for (int j =0;j < col;j++)
+                    {
+                        Controls.Remove(imageMatrix[i, j]);
+                    }
+                }
+                this.row = 0;
+                this.col = 0;
+                this.duration = 0;
+                
+            }
+
+
+
+
+            PictureBox backGroundMap = new PictureBox();
+            backGroundMap.BackColor = Color.Black;
+            backGroundMap.Location = new Point(627, 124);
+            backGroundMap.Size = new Size(680, 460);
+            Controls.Add(backGroundMap);
+            backGroundMap.SendToBack();
+
             this.row = lines.Length;
             this.col = lines[0].Split(' ').Length;
             map = ConvertMap(openFile1.FileName, this.row, this.col);
@@ -419,14 +448,11 @@ namespace tes
                     // set other properties of the picture box as needed
 
                     imageMatrix[i, j] = pictureBox;
-                    Controls.Add(pictureBox);
+                    Controls.Add(imageMatrix[i, j]);
+                    imageMatrix[i, j].BringToFront();
                 }
             }
-            PictureBox backGroundMap = new PictureBox();
-            backGroundMap.BackColor = Color.Black;
-            backGroundMap.Location = new Point(627, 124);
-            backGroundMap.Size = new Size(680, 460);
-            Controls.Add(backGroundMap);
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -460,6 +486,11 @@ namespace tes
         }
 
         private void sleepInputBox_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
 
         }
