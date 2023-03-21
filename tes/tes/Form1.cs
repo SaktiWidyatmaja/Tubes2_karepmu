@@ -377,6 +377,10 @@ namespace WinForm
                     map[i, j] = lines[i][k];
                     Console.Write(map[i, j]);
                     k++;
+
+                    if (lines[i][k] != 'R' && lines[i][k] != 'T' && lines[i][k] != 'T' && lines[i][k] != 'K' && lines[i][k] != 'X') {
+                        throw e;
+                    }
                 }
 
                 Console.Write("\n");
@@ -390,78 +394,90 @@ namespace WinForm
             string[] lines = System.IO.File.ReadAllLines(openFile1.FileName);
 
 
+            try {
             // Kalau udah ada input file, hapus dulu semua data
-            if (this.row != 0)
-            {
-                for (int i = 0; i < row; i++)
+                if (this.row != 0)
                 {
-                    for (int j = 0; j < col; j++)
+                    for (int i = 0; i < row; i++)
                     {
-                        Controls.Remove(imageMatrix[i, j]);
+                        for (int j = 0; j < col; j++)
+                        {
+                            Controls.Remove(imageMatrix[i, j]);
+                        }
+                    }
+                    this.row = 0;
+                    this.col = 0;
+                    this.duration = 0;
+
+                    map = new char[0, 0];
+                    start = new int[2];
+                    path = "";
+                    mapInt = new int[0, 0];
+                    goalStates = new List<Tuple<int, int>>();
+                }
+
+                PictureBox backGroundMap = new PictureBox();
+                backGroundMap.BackColor = Color.Black;
+                backGroundMap.Location = new Point(627, 124);
+                backGroundMap.Size = new Size(680, 460);
+                Controls.Add(backGroundMap);
+                backGroundMap.SendToBack();
+
+                this.row = lines.Length;
+                this.col = lines[0].Split(' ').Length;
+                map = ConvertMap(openFile1.FileName, this.row, this.col);
+
+                int[,] MapInt = ConvertMapToInt(map, this.row, this.col, this.start);
+
+                imageMatrix = new PictureBox[this.row, this.col];
+
+                for (int i = 0; i < this.row; i++)
+                {
+                    for (int j = 0; j < this.col; j++)
+                    {
+                        var pictureBox = new PictureBox();
+
+                        pictureBox.Location = new Point((j * 35) + 638, (i * 35) + 150);
+
+
+                        if (map[i, j] == 'K')
+                        {
+                            pictureBox.BackColor = Color.Red;
+                            pictureBox.Size = new Size(20, 20);
+                        }
+                        else if (map[i, j] == 'R')
+                        {
+                            pictureBox.BackColor = Color.White;
+                            pictureBox.Size = new Size(20, 20);
+                        }
+                        else if (map[i, j] == 'T')
+                        {
+                            pictureBox.BackColor = Color.BlueViolet;
+                            pictureBox.Size = new Size(20, 20);
+                        }
+                        else if (map[i, j] == 'X')
+                        {
+                            pictureBox.BackColor = Color.Black;
+                            pictureBox.Size = new Size(20, 20);
+                        }
+
+                        // set other properties of the picture box as needed
+
+                        imageMatrix[i, j] = pictureBox;
+                        Controls.Add(imageMatrix[i, j]);
+                        imageMatrix[i, j].BringToFront();
                     }
                 }
-                this.row = 0;
-                this.col = 0;
-                this.duration = 0;
-
-                map = new char[0, 0];
-                start = new int[2];
-                path = "";
-                mapInt = new int[0, 0];
-                goalStates = new List<Tuple<int, int>>();
             }
-
-            PictureBox backGroundMap = new PictureBox();
-            backGroundMap.BackColor = Color.Black;
-            backGroundMap.Location = new Point(627, 124);
-            backGroundMap.Size = new Size(680, 460);
-            Controls.Add(backGroundMap);
-            backGroundMap.SendToBack();
-
-            this.row = lines.Length;
-            this.col = lines[0].Split(' ').Length;
-            map = ConvertMap(openFile1.FileName, this.row, this.col);
-
-            int[,] MapInt = ConvertMapToInt(map, this.row, this.col, this.start);
-
-            imageMatrix = new PictureBox[this.row, this.col];
-
-            for (int i = 0; i < this.row; i++)
-            {
-                for (int j = 0; j < this.col; j++)
-                {
-                    var pictureBox = new PictureBox();
-
-                    pictureBox.Location = new Point((j * 35) + 638, (i * 35) + 150);
-
-
-                    if (map[i, j] == 'K')
-                    {
-                        pictureBox.BackColor = Color.Red;
-                        pictureBox.Size = new Size(20, 20);
-                    }
-                    else if (map[i, j] == 'R')
-                    {
-                        pictureBox.BackColor = Color.White;
-                        pictureBox.Size = new Size(20, 20);
-                    }
-                    else if (map[i, j] == 'T')
-                    {
-                        pictureBox.BackColor = Color.BlueViolet;
-                        pictureBox.Size = new Size(20, 20);
-                    }
-                    else if (map[i, j] == 'X')
-                    {
-                        pictureBox.BackColor = Color.Black;
-                        pictureBox.Size = new Size(20, 20);
-                    }
-
-                    // set other properties of the picture box as needed
-
-                    imageMatrix[i, j] = pictureBox;
-                    Controls.Add(imageMatrix[i, j]);
-                    imageMatrix[i, j].BringToFront();
-                }
+            catch (e) {
+                Console.WriteLine("search with DFS");
+                TextBox errorText = new TextBox();
+                errorText.text = "INPUT FILE INVALID!";
+                errorText.Size = 22;
+                errorText.Location = new Point(738, 200);
+                errorText.BackColor = Color.Black;
+                errorText.ForeColor = Color.Red;
+                errorText.Anchor = Anchor.Top; Anchor.Bottom;
             }
 
         }
