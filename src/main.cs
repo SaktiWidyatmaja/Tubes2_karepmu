@@ -25,8 +25,9 @@ class Program
         MazeSolver solver = new MazeSolver(maze, goalStates);
         BFSMazeSolver solverb = new BFSMazeSolver(maze, goalStates);
         solver.Solve(0, 0, "");
-        solverb.Solve(ref path, ref pathPlan, ref simpulHidup);
-        solverb.Solve2(ref path, ref pathPlan, ref simpulHidup);
+        // solverb.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, false);
+        solverb.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, true);
+        // solverb.Solve2(ref path, ref pathPlan, ref simpulHidup);
     }
 }
 
