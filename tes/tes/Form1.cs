@@ -15,7 +15,7 @@ using DFS;
 using System.Reflection.Emit;
 using System.Threading;
 
-namespace tes
+namespace WinForm
 {
     public partial class Form1 : Form
     {
