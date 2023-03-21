@@ -27,7 +27,6 @@ class Program
         solver.Solve(0, 0, "");
         // solverb.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, false);
         solverb.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, true);
-        // solverb.Solve2(ref path, ref pathPlan, ref simpulHidup);
     }
 }
 

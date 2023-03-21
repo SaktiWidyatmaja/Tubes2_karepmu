@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using BFS;
 using DFS;
 using System.Reflection.Emit;
 using System.Threading;
@@ -154,7 +155,69 @@ namespace tes
                 //    }
                 //}
             }
+
+            if (BFSbtn.Checked == true)
+            {
+                Console.WriteLine("search with BFS");
+                
+                Stopwatch stopwatch = new Stopwatch();
+                string pathPlan = "";
+                List<Tuple<int, int>> simpulHidup = new List<Tuple<int, int>>();
+                simpulHidup.Add(new Tuple<int, int>(0, 0));
+                // bool tsp;
+                BFSMazeSolver solver = new BFSMazeSolver(mapInt, goalStates);
+                
+                stopwatch.Start();
+                // if (toggletsp){
+                //     tsp = true;
+                // } else {
+                //     tsp = false;
+                // }
+                // solver.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, tsp);
+                solver.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, false);
+                // path = solver.path;
+                stopwatch.Stop();
+
+                string routetext = "";
+                for (int i = 0; i < path.Length; i++)
+                {
+                    routetext += path[i];
+                    if (i != path.Length - 1)
+                    {
+                        routetext += " - ";
+                    }
+                }
+
+                routeText.Text = routetext;
+                stepsText.Text = path.Length.ToString();
+                nodesText.Text = solver.nodeCount.ToString();
+                routeText.Refresh();
+
+
+                TimeSpan elapsed = stopwatch.Elapsed;
+                timeText.Text = elapsed.TotalMilliseconds.ToString();
+                timeText.Text += " ms";
+
+
+                //for (int i = 0; i < this.row; i++)
+                //{
+                //    for (int j = 0; j < this.col; j++)
+                //    {
+                //        if (solver.visited[i, j])
+                //        {
+                //            if (imageMatrix[i, j].BackColor == Color.White)
+                //            {
+                //                imageMatrix[i, j].BackColor = Color.Green;
+                //            } else if (imageMatrix[i,j].BackColor == Color.BlueViolet)
+                //            {
+                //                imageMatrix[i, j].BackColor = Color.Aqua;
+                //            }
+                //        }
+                //    }
+                //}
+            }
         }
+
 
         public static void outputRoute(int i, int j, bool isVisited)
         {
