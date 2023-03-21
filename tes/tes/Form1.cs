@@ -379,9 +379,9 @@ namespace WinForm
                     Console.Write(map[i, j]);
                     k++;
 
-                    if (lines[i][k] != 'R' && lines[i][k] != 'T' && lines[i][k] != 'T' && lines[i][k] != 'K' && lines[i][k] != 'X') {
-                        throw new InvalidDataException("input invalid");
-                    }
+                    // if (lines[i][k] != 'R' && lines[i][k] != 'T' && lines[i][k] != 'T' && lines[i][k] != 'K' && lines[i][k] != 'X') {
+                        // throw new InvalidDataException("input invalid");
+                    // }
                 }
 
                 Console.Write("\n");
@@ -395,8 +395,9 @@ namespace WinForm
             string[] lines = System.IO.File.ReadAllLines(openFile1.FileName);
 
 
-            try {
-            // Kalau udah ada input file, hapus dulu semua data
+            try
+            {
+                //Kalau udah ada input file, hapus dulu semua data
                 if (this.row != 0)
                 {
                     for (int i = 0; i < row; i++)
@@ -419,8 +420,8 @@ namespace WinForm
 
                 PictureBox backGroundMap = new PictureBox();
                 backGroundMap.BackColor = Color.Black;
-                backGroundMap.Location = new Point(627, 124);
-                backGroundMap.Size = new Size(680, 460);
+                backGroundMap.Location = new Point(587, 124);
+                backGroundMap.Size = new Size(880, 460);
                 Controls.Add(backGroundMap);
                 backGroundMap.SendToBack();
 
@@ -438,28 +439,28 @@ namespace WinForm
                     {
                         var pictureBox = new PictureBox();
 
-                        pictureBox.Location = new Point((j * 35) + 638, (i * 35) + 150);
+                        pictureBox.Location = new Point((j * 50) + 738, (i * 50) + 150);
 
 
                         if (map[i, j] == 'K')
                         {
                             pictureBox.BackColor = Color.Red;
-                            pictureBox.Size = new Size(20, 20);
+                            pictureBox.Size = new Size(46, 46);
                         }
                         else if (map[i, j] == 'R')
                         {
                             pictureBox.BackColor = Color.White;
-                            pictureBox.Size = new Size(20, 20);
+                            pictureBox.Size = new Size(46, 46);
                         }
                         else if (map[i, j] == 'T')
                         {
                             pictureBox.BackColor = Color.BlueViolet;
-                            pictureBox.Size = new Size(20, 20);
+                            pictureBox.Size = new Size(46, 46);
                         }
                         else if (map[i, j] == 'X')
                         {
                             pictureBox.BackColor = Color.Black;
-                            pictureBox.Size = new Size(20, 20);
+                            pictureBox.Size = new Size(46, 46);
                         }
 
                         // set other properties of the picture box as needed
@@ -479,9 +480,10 @@ namespace WinForm
                 errorText.ForeColor = Color.Red;
                 errorText.Anchor = AnchorStyles.Top;
                 errorText.Anchor = AnchorStyles.Bottom;
+                errorText.BringToFront();
             }
 
-        }
+}
 
         private void Form1_Load(object sender, EventArgs e)
         {
