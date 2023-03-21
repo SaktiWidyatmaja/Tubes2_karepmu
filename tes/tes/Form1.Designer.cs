@@ -457,6 +457,7 @@ namespace WinForm
             this.Controls.Add(this.filenameLabel);
             this.Controls.Add(this.inputLabel);
             this.Controls.Add(this.title);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Treasure Hunt Solver";

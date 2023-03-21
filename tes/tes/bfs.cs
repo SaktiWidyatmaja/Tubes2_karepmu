@@ -32,7 +32,7 @@ namespace BFS
             this.path = "";
         }
 
-        public void Solve(Tuple<int, int> startNode, ref string path, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup, bool tsp)
+        public void Solve(Tuple<int, int> startNode, ref string path, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup, bool tsp, int sleepTime)
         {
             int startRow = simpulHidup[0].Item1;
             int startCol = simpulHidup[0].Item2;
@@ -60,6 +60,8 @@ namespace BFS
 
             // Mark current cell as visited
             visited[startRow, startCol] = true;
+            Form1.outputRoute(startRow, startCol, true, sleepTime);
+            Console.WriteLine("currentpath " + path);
 
             // Check if all goal states have been visited
             if (numGoalsVisited == goalStates.Count)
@@ -83,7 +85,7 @@ namespace BFS
                     pathPlan = "";
                     simpulHidup.Clear();
                     simpulHidup.Add(new Tuple<int, int>(startRow,startCol));
-                    Solve(startNode, ref path, ref pathPlan, ref simpulHidup, false);
+                    Solve(startNode, ref path, ref pathPlan, ref simpulHidup, false, sleepTime);
 
                 } else {
                     pathCount += 1;
@@ -117,11 +119,12 @@ namespace BFS
                 simpulHidup.Add(new Tuple<int, int>(startRow+1, startCol));
             }
 
-            Solve(startNode, ref path, ref pathPlan, ref simpulHidup, tsp);
+            Solve(startNode, ref path, ref pathPlan, ref simpulHidup, tsp, sleepTime);
             // BACKTRACKING
 
             // Mark current cell as unvisited 
             visited[startRow, startCol] = false;
+            Console.WriteLine("back " + path);
             nodeCount++;
 
             // Decrement number of goals visited (if necessary)

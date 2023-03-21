@@ -172,7 +172,7 @@ namespace WinForm
                 Stopwatch stopwatch = new Stopwatch();
                 string pathPlan = "";
                 List<Tuple<int, int>> simpulHidup = new List<Tuple<int, int>>();
-                simpulHidup.Add(new Tuple<int, int>(0, 0));
+                simpulHidup.Add(new Tuple<int, int>(start[0], start[1]));
                 // bool tsp;
                 BFSMazeSolver solver = new BFSMazeSolver(mapInt, goalStates);
 
@@ -183,7 +183,7 @@ namespace WinForm
                 //     tsp = false;
                 // }
                 // solver.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, tsp);
-                solver.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, false);
+                solver.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, false, Decimal.ToInt32(sleepInputBox.Value));
                 // path = solver.path;
                 stopwatch.Stop();
 
@@ -240,9 +240,9 @@ namespace WinForm
                 }
                 else if (imageMatrix[i, j].BackColor == Color.BlueViolet)
                 {
-                    imageMatrix[i, j].BackColor = Color.Aqua;
+                    imageMatrix[i, j].BackColor = Color.FromArgb(255, 255, 192);
                 }
-                else
+                else if (imageMatrix[i, j].BackColor == Color.Red)
                 {
                     imageMatrix[i, j].BackColor = Color.Pink;
                 }
@@ -409,12 +409,7 @@ namespace WinForm
                 path = "";
                 mapInt = new int[0, 0];
                 goalStates = new List<Tuple<int, int>>();
-
-
-    }
-
-
-
+            }
 
             PictureBox backGroundMap = new PictureBox();
             backGroundMap.BackColor = Color.Black;
