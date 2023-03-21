@@ -14,6 +14,7 @@ using BFS;
 using DFS;
 using System.Reflection.Emit;
 using System.Threading;
+using System.IO;
 
 namespace WinForm
 {
@@ -379,7 +380,7 @@ namespace WinForm
                     k++;
 
                     if (lines[i][k] != 'R' && lines[i][k] != 'T' && lines[i][k] != 'T' && lines[i][k] != 'K' && lines[i][k] != 'X') {
-                        throw e;
+                        throw new InvalidDataException("input invalid");
                     }
                 }
 
@@ -469,15 +470,15 @@ namespace WinForm
                     }
                 }
             }
-            catch (e) {
-                Console.WriteLine("search with DFS");
-                TextBox errorText = new TextBox();
-                errorText.text = "INPUT FILE INVALID!";
-                errorText.Size = 22;
+            catch (InvalidDataException e) {
+                Console.WriteLine($"Error : Invalid Data Input");
+                System.Windows.Forms.TextBox errorText = new System.Windows.Forms.TextBox();
+                errorText.Text = "INPUT FILE INVALID!";
                 errorText.Location = new Point(738, 200);
                 errorText.BackColor = Color.Black;
                 errorText.ForeColor = Color.Red;
-                errorText.Anchor = Anchor.Top; Anchor.Bottom;
+                errorText.Anchor = AnchorStyles.Top;
+                errorText.Anchor = AnchorStyles.Bottom;
             }
 
         }
