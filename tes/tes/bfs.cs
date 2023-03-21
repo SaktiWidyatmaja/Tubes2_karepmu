@@ -16,6 +16,8 @@ namespace BFS
         private List<Tuple<int, int>> goalStates; // list of goal states in the maze   
         private int numGoalsVisited; // number of goal states visited in current path
         private int pathCount;
+        public int nodeCount;
+        public string path;
 
         public BFSMazeSolver(int[,] maze, List<Tuple<int, int>> goalStates)
         {
@@ -26,6 +28,8 @@ namespace BFS
             this.goalStates = goalStates;
             this.numGoalsVisited = 0;
             this.pathCount = 0;
+            this.nodeCount = 0;
+            this.path = "";
         }
 
         public void Solve(Tuple<int, int> startNode, ref string path, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup, bool tsp)
@@ -44,6 +48,8 @@ namespace BFS
                 return;
             }
             // }
+
+            nodeCount++;
 
             // Check if current cell is a goal state
             if (IsGoalState(startRow, startCol))
@@ -116,6 +122,7 @@ namespace BFS
 
             // Mark current cell as unvisited 
             visited[startRow, startCol] = false;
+            nodeCount++;
 
             // Decrement number of goals visited (if necessary)
             if (IsGoalState(startRow, startCol))

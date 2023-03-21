@@ -134,8 +134,8 @@ namespace tes
 
 
                 TimeSpan elapsed = stopwatch.Elapsed;
-                timeText.Text = elapsed.TotalMilliseconds.ToString();
-                timeText.Text += " ms";
+                timeText.Text = (elapsed.TotalMilliseconds/1000).ToString();
+                timeText.Text += " s";
 
 
                 //for (int i = 0; i < this.row; i++)
@@ -195,8 +195,8 @@ namespace tes
 
 
                 TimeSpan elapsed = stopwatch.Elapsed;
-                timeText.Text = elapsed.TotalMilliseconds.ToString();
-                timeText.Text += " ms";
+                timeText.Text = (elapsed.TotalMilliseconds/1000).ToString();
+                timeText.Text += " s";
 
 
                 //for (int i = 0; i < this.row; i++)
