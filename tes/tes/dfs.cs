@@ -15,10 +15,12 @@ namespace DFS
         private List<Tuple<int, int>> goalStates; // list of goal states in the maze
         private int numGoalsVisited; // number of goal states visited in current path
         private bool isFound;
+        private int[] startState;
+        private int startCount;
         public int nodeCount;
         public string path;
 
-        public DFSMazeSolver(int[,] maze, List<Tuple<int, int>> goalStates)
+        public DFSMazeSolver(int[,] maze, List<Tuple<int, int>> goalStates, int[] start)
         {
             this.maze = maze;
             this.numRows = maze.GetLength(0);
@@ -27,6 +29,8 @@ namespace DFS
             this.goalStates = goalStates;
             this.numGoalsVisited = 0;
             this.isFound = false;
+            this.startState = start;
+            this.startCount = 0;
             this.nodeCount = 0;
             this.path = "";
         }
@@ -41,6 +45,10 @@ namespace DFS
 
             // Mark current cell as visited
             visited[startRow, startCol] = true;
+            if (IsStartState(startRow, startCol))
+            {
+                startCount++;
+            }
             Form1.outputRoute(startRow, startCol, true, sleepTime);
             Console.WriteLine("currentpath " + path);
             nodeCount++;
@@ -124,6 +132,11 @@ namespace DFS
             return false;
         }
 
+        private bool IsStartState(int row, int col)
+        {
+            return (row == startState[0] && col == startState[1]);
+        }
+
         private bool CanMove(int row, int col)
         {
             // Check if cell is within maze boundaries
@@ -134,6 +147,10 @@ namespace DFS
             // Check if cell is not a wall and has not been visited
             if (maze[row, col] == 1 || visited[row, col])
             {
+                if (IsStartState(row, col) && startCount != 2 && numGoalsVisited == goalStates.Count - 1)
+                {
+                    return true;
+                }
                 return false;
             }
             return true;

@@ -28,7 +28,7 @@ namespace WinForm
         private static List<Tuple<int, int>> goalStates = new List<Tuple<int, int>>();
         private double duration = 0;
 
-        private static PictureBox[,] imageMatrix = new PictureBox[0,0];
+        private static PictureBox[,] imageMatrix = new PictureBox[0, 0];
 
         public Form1()
         {
@@ -37,7 +37,7 @@ namespace WinForm
 
         private void title_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void inputLabel_Click(object sender, EventArgs e)
@@ -108,11 +108,18 @@ namespace WinForm
             if (DFSbtn.Checked == true)
             {
                 Console.WriteLine("search with DFS");
-                
+
+                if (TSPcheckBox.Checked)
+                {
+                    Console.WriteLine("TSP");
+                    goalStates.Add(new Tuple<int, int>(start[0], start[1]));
+                    goalStates.Add(new Tuple<int, int>(start[0], start[1]));
+                }
+
                 Stopwatch stopwatch = new Stopwatch();
 
-                DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates);
-                
+                DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates, start);
+
                 stopwatch.Start();
                 solver.Solve(start[0], start[1], path, Decimal.ToInt32(sleepInputBox.Value));
                 path = solver.path;
@@ -135,7 +142,7 @@ namespace WinForm
 
 
                 TimeSpan elapsed = stopwatch.Elapsed;
-                this.duration = elapsed.TotalMilliseconds/1000;
+                this.duration = elapsed.TotalMilliseconds / 1000;
                 timeText.Text = this.duration.ToString();
                 timeText.Text += " s";
 
@@ -161,14 +168,14 @@ namespace WinForm
             if (BFSbtn.Checked == true)
             {
                 Console.WriteLine("search with BFS");
-                
+
                 Stopwatch stopwatch = new Stopwatch();
                 string pathPlan = "";
                 List<Tuple<int, int>> simpulHidup = new List<Tuple<int, int>>();
                 simpulHidup.Add(new Tuple<int, int>(0, 0));
                 // bool tsp;
                 BFSMazeSolver solver = new BFSMazeSolver(mapInt, goalStates);
-                
+
                 stopwatch.Start();
                 // if (toggletsp){
                 //     tsp = true;
@@ -197,7 +204,7 @@ namespace WinForm
 
 
                 TimeSpan elapsed = stopwatch.Elapsed;
-                timeText.Text = (elapsed.TotalMilliseconds/1000).ToString();
+                timeText.Text = (elapsed.TotalMilliseconds / 1000).ToString();
                 timeText.Text += " s";
 
 
@@ -234,15 +241,17 @@ namespace WinForm
                 else if (imageMatrix[i, j].BackColor == Color.BlueViolet)
                 {
                     imageMatrix[i, j].BackColor = Color.Aqua;
-                } else
+                }
+                else
                 {
                     imageMatrix[i, j].BackColor = Color.Pink;
                 }
-            } else
+            }
+            else
             {
                 if (map[i, j] == 'R')
                 {
-                    imageMatrix[i,j].BackColor = Color.White;
+                    imageMatrix[i, j].BackColor = Color.White;
                 }
                 else if (map[i, j] == 'T')
                 {
@@ -338,7 +347,7 @@ namespace WinForm
                         }
                         mapInt[i, j] = 0;
                     }
-                    
+
                 }
             }
             return mapInt;
@@ -384,9 +393,9 @@ namespace WinForm
             // Kalau udah ada input file, hapus dulu semua data
             if (this.row != 0)
             {
-                for (int i = 0;i < row;i++) 
+                for (int i = 0; i < row; i++)
                 {
-                    for (int j =0;j < col;j++)
+                    for (int j = 0; j < col; j++)
                     {
                         Controls.Remove(imageMatrix[i, j]);
                     }
@@ -394,7 +403,7 @@ namespace WinForm
                 this.row = 0;
                 this.col = 0;
                 this.duration = 0;
-                
+
             }
 
 
@@ -452,7 +461,7 @@ namespace WinForm
                     imageMatrix[i, j].BringToFront();
                 }
             }
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -491,6 +500,11 @@ namespace WinForm
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
         }

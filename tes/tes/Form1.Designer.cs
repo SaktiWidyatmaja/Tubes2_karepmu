@@ -38,7 +38,6 @@ namespace WinForm
             this.openFileBtn = new System.Windows.Forms.Button();
             this.algoritmaLabel = new System.Windows.Forms.Label();
             this.SearchMethod = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.DFSbtn = new System.Windows.Forms.RadioButton();
             this.BFSbtn = new System.Windows.Forms.RadioButton();
             this.visualBtn = new System.Windows.Forms.Button();
@@ -57,6 +56,7 @@ namespace WinForm
             this.sleepLabel = new System.Windows.Forms.Label();
             this.sleepInputBox = new System.Windows.Forms.NumericUpDown();
             this.msSleep = new System.Windows.Forms.Label();
+            this.TSPcheckBox = new System.Windows.Forms.CheckBox();
             this.SearchMethod.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.line)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sleepInputBox)).BeginInit();
@@ -129,7 +129,7 @@ namespace WinForm
             this.openFileBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openFileBtn.ForeColor = System.Drawing.Color.Chartreuse;
             this.openFileBtn.Location = new System.Drawing.Point(69, 283);
-            this.openFileBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.openFileBtn.Margin = new System.Windows.Forms.Padding(2);
             this.openFileBtn.MaximumSize = new System.Drawing.Size(98, 28);
             this.openFileBtn.MinimumSize = new System.Drawing.Size(98, 28);
             this.openFileBtn.Name = "openFileBtn";
@@ -157,37 +157,20 @@ namespace WinForm
             // 
             this.SearchMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.SearchMethod.AutoSize = true;
-            this.SearchMethod.Controls.Add(this.radioButton1);
             this.SearchMethod.Controls.Add(this.DFSbtn);
             this.SearchMethod.Controls.Add(this.BFSbtn);
             this.SearchMethod.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SearchMethod.ForeColor = System.Drawing.Color.Transparent;
             this.SearchMethod.Location = new System.Drawing.Point(69, 407);
-            this.SearchMethod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.SearchMethod.MaximumSize = new System.Drawing.Size(120, 138);
-            this.SearchMethod.MinimumSize = new System.Drawing.Size(120, 138);
+            this.SearchMethod.Margin = new System.Windows.Forms.Padding(2);
+            this.SearchMethod.MaximumSize = new System.Drawing.Size(120, 100);
+            this.SearchMethod.MinimumSize = new System.Drawing.Size(120, 100);
             this.SearchMethod.Name = "SearchMethod";
-            this.SearchMethod.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.SearchMethod.Size = new System.Drawing.Size(120, 138);
+            this.SearchMethod.Padding = new System.Windows.Forms.Padding(2);
+            this.SearchMethod.Size = new System.Drawing.Size(120, 100);
             this.SearchMethod.TabIndex = 17;
             this.SearchMethod.TabStop = false;
             this.SearchMethod.Enter += new System.EventHandler(this.SearchMethod_Enter);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.ForeColor = System.Drawing.Color.DarkRed;
-            this.radioButton1.Location = new System.Drawing.Point(4, 87);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(87, 41);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "TSP";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // DFSbtn
             // 
@@ -195,7 +178,7 @@ namespace WinForm
             this.DFSbtn.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DFSbtn.ForeColor = System.Drawing.Color.DarkRed;
             this.DFSbtn.Location = new System.Drawing.Point(4, 17);
-            this.DFSbtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DFSbtn.Margin = new System.Windows.Forms.Padding(2);
             this.DFSbtn.Name = "DFSbtn";
             this.DFSbtn.Size = new System.Drawing.Size(89, 41);
             this.DFSbtn.TabIndex = 1;
@@ -210,7 +193,7 @@ namespace WinForm
             this.BFSbtn.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BFSbtn.ForeColor = System.Drawing.Color.DarkRed;
             this.BFSbtn.Location = new System.Drawing.Point(4, 52);
-            this.BFSbtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BFSbtn.Margin = new System.Windows.Forms.Padding(2);
             this.BFSbtn.Name = "BFSbtn";
             this.BFSbtn.Size = new System.Drawing.Size(87, 41);
             this.BFSbtn.TabIndex = 2;
@@ -226,7 +209,7 @@ namespace WinForm
             this.visualBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualBtn.ForeColor = System.Drawing.Color.Transparent;
             this.visualBtn.Location = new System.Drawing.Point(166, 686);
-            this.visualBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.visualBtn.Margin = new System.Windows.Forms.Padding(2);
             this.visualBtn.MaximumSize = new System.Drawing.Size(135, 41);
             this.visualBtn.MinimumSize = new System.Drawing.Size(135, 41);
             this.visualBtn.Name = "visualBtn";
@@ -257,7 +240,7 @@ namespace WinForm
             this.searchButtton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchButtton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.searchButtton.Location = new System.Drawing.Point(728, 686);
-            this.searchButtton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.searchButtton.Margin = new System.Windows.Forms.Padding(2);
             this.searchButtton.MaximumSize = new System.Drawing.Size(135, 41);
             this.searchButtton.MinimumSize = new System.Drawing.Size(135, 41);
             this.searchButtton.Name = "searchButtton";
@@ -272,7 +255,7 @@ namespace WinForm
             this.line.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.line.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.line.Location = new System.Drawing.Point(400, 94);
-            this.line.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.line.Margin = new System.Windows.Forms.Padding(2);
             this.line.MaximumSize = new System.Drawing.Size(1, 650);
             this.line.MinimumSize = new System.Drawing.Size(1, 650);
             this.line.Name = "line";
@@ -431,12 +414,27 @@ namespace WinForm
             this.msSleep.Text = "ms";
             this.msSleep.Click += new System.EventHandler(this.label1_Click_1);
             // 
+            // TSPcheckBox
+            // 
+            this.TSPcheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.TSPcheckBox.AutoSize = true;
+            this.TSPcheckBox.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold);
+            this.TSPcheckBox.ForeColor = System.Drawing.Color.DarkRed;
+            this.TSPcheckBox.Location = new System.Drawing.Point(227, 425);
+            this.TSPcheckBox.Name = "TSPcheckBox";
+            this.TSPcheckBox.Size = new System.Drawing.Size(88, 41);
+            this.TSPcheckBox.TabIndex = 35;
+            this.TSPcheckBox.Text = "TSP";
+            this.TSPcheckBox.UseVisualStyleBackColor = true;
+            this.TSPcheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1028, 609);
+            this.Controls.Add(this.TSPcheckBox);
             this.Controls.Add(this.msSleep);
             this.Controls.Add(this.sleepInputBox);
             this.Controls.Add(this.sleepLabel);
@@ -459,7 +457,7 @@ namespace WinForm
             this.Controls.Add(this.filenameLabel);
             this.Controls.Add(this.inputLabel);
             this.Controls.Add(this.title);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Treasure Hunt Solver";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -499,7 +497,7 @@ namespace WinForm
         private System.Windows.Forms.Label sleepLabel;
         private System.Windows.Forms.NumericUpDown sleepInputBox;
         private System.Windows.Forms.Label msSleep;
-        internal System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.CheckBox TSPcheckBox;
     }
 }
 
