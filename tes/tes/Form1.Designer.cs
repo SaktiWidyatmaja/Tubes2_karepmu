@@ -75,7 +75,6 @@ namespace WinForm
             this.title.TabIndex = 1;
             this.title.Text = "TREASURE HUNT SOLVER";
             this.title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.title.Click += new System.EventHandler(this.title_Click);
             // 
             // inputLabel
             // 
@@ -88,7 +87,6 @@ namespace WinForm
             this.inputLabel.Size = new System.Drawing.Size(82, 32);
             this.inputLabel.TabIndex = 5;
             this.inputLabel.Text = "Input";
-            this.inputLabel.Click += new System.EventHandler(this.inputLabel_Click);
             // 
             // filenameLabel
             // 
@@ -101,7 +99,6 @@ namespace WinForm
             this.filenameLabel.Size = new System.Drawing.Size(165, 38);
             this.filenameLabel.TabIndex = 7;
             this.filenameLabel.Text = "File Name";
-            this.filenameLabel.Click += new System.EventHandler(this.filenameLabel_Click);
             // 
             // fileNamePlace
             // 
@@ -117,7 +114,6 @@ namespace WinForm
             this.fileNamePlace.Size = new System.Drawing.Size(399, 20);
             this.fileNamePlace.TabIndex = 14;
             this.fileNamePlace.Text = "e.g maze.txt";
-            this.fileNamePlace.Click += new System.EventHandler(this.fileNamePlace_Click);
             // 
             // openFileBtn
             // 
@@ -147,7 +143,6 @@ namespace WinForm
             this.algoritmaLabel.Size = new System.Drawing.Size(154, 38);
             this.algoritmaLabel.TabIndex = 16;
             this.algoritmaLabel.Text = "Algoritma";
-            this.algoritmaLabel.Click += new System.EventHandler(this.algoritmaLabel_Click);
             // 
             // SearchMethod
             // 
@@ -167,7 +162,6 @@ namespace WinForm
             this.SearchMethod.Size = new System.Drawing.Size(280, 160);
             this.SearchMethod.TabIndex = 17;
             this.SearchMethod.TabStop = false;
-            this.SearchMethod.Enter += new System.EventHandler(this.SearchMethod_Enter);
             // 
             // DFSbtn
             // 
@@ -182,7 +176,6 @@ namespace WinForm
             this.DFSbtn.TabStop = true;
             this.DFSbtn.Text = "DFS";
             this.DFSbtn.UseVisualStyleBackColor = true;
-            this.DFSbtn.CheckedChanged += new System.EventHandler(this.DFSbtn_CheckedChanged);
             // 
             // BFSbtn
             // 
@@ -197,7 +190,6 @@ namespace WinForm
             this.BFSbtn.TabStop = true;
             this.BFSbtn.Text = "BFS";
             this.BFSbtn.UseVisualStyleBackColor = true;
-            this.BFSbtn.CheckedChanged += new System.EventHandler(this.BFSbtn_CheckedChanged);
             // 
             // visualBtn
             // 
@@ -227,7 +219,6 @@ namespace WinForm
             this.outputLabel.Size = new System.Drawing.Size(106, 32);
             this.outputLabel.TabIndex = 19;
             this.outputLabel.Text = "Output";
-            this.outputLabel.Click += new System.EventHandler(this.outputLabel_Click);
             // 
             // searchButtton
             // 
@@ -277,7 +268,6 @@ namespace WinForm
             this.routeLabel.Size = new System.Drawing.Size(109, 37);
             this.routeLabel.TabIndex = 22;
             this.routeLabel.Text = "Route :";
-            this.routeLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // nodesLabel
             // 
@@ -291,7 +281,6 @@ namespace WinForm
             this.nodesLabel.Size = new System.Drawing.Size(116, 37);
             this.nodesLabel.TabIndex = 23;
             this.nodesLabel.Text = "Nodes :";
-            this.nodesLabel.Click += new System.EventHandler(this.label2_Click);
             // 
             // stepsLabel
             // 
@@ -305,7 +294,6 @@ namespace WinForm
             this.stepsLabel.Size = new System.Drawing.Size(117, 37);
             this.stepsLabel.TabIndex = 24;
             this.stepsLabel.Text = "Steps   :";
-            this.stepsLabel.Click += new System.EventHandler(this.label3_Click);
             // 
             // timeLabel
             // 
@@ -345,7 +333,6 @@ namespace WinForm
             this.timeText.Size = new System.Drawing.Size(117, 37);
             this.timeText.TabIndex = 27;
             this.timeText.Text = "0,00 ms";
-            this.timeText.Click += new System.EventHandler(this.timeText_Click);
             // 
             // stepsText
             // 
@@ -405,7 +392,6 @@ namespace WinForm
             this.sleepInputBox.Name = "sleepInputBox";
             this.sleepInputBox.Size = new System.Drawing.Size(124, 40);
             this.sleepInputBox.TabIndex = 33;
-            this.sleepInputBox.ValueChanged += new System.EventHandler(this.sleepInputBox_ValueChanged);
             // 
             // msSleep
             // 
@@ -419,7 +405,6 @@ namespace WinForm
             this.msSleep.Size = new System.Drawing.Size(56, 37);
             this.msSleep.TabIndex = 34;
             this.msSleep.Text = "ms";
-            this.msSleep.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // TSPcheckBox
             // 
@@ -434,7 +419,6 @@ namespace WinForm
             this.TSPcheckBox.TabIndex = 35;
             this.TSPcheckBox.Text = "TSP";
             this.TSPcheckBox.UseVisualStyleBackColor = true;
-            this.TSPcheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // dfsMultivisitbtn
             // 
@@ -449,7 +433,6 @@ namespace WinForm
             this.dfsMultivisitbtn.TabStop = true;
             this.dfsMultivisitbtn.Text = "DFS (Multivisit)";
             this.dfsMultivisitbtn.UseVisualStyleBackColor = true;
-            this.dfsMultivisitbtn.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged_1);
             // 
             // Form1
             // 
@@ -485,7 +468,6 @@ namespace WinForm
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Treasure Hunt Solver";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.SearchMethod.ResumeLayout(false);
             this.SearchMethod.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.line)).EndInit();

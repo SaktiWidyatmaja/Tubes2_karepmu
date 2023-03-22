@@ -36,26 +36,6 @@ namespace WinForm
             InitializeComponent();
         }
 
-        private void title_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void inputLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void filenameLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void fileNamePlace_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private System.Windows.Forms.OpenFileDialog openFile1 = new OpenFileDialog();
         private void openFileBtn_Click(object sender, EventArgs e)
         {
@@ -77,31 +57,6 @@ namespace WinForm
             {
                 fileNamePlace.Text = openFile1.FileName;
             }
-        }
-
-        private void algoritmaLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SearchMethod_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DFSbtn_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BFSbtn_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void outputLabel_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void searchButtton_Click(object sender, EventArgs e)
@@ -225,23 +180,6 @@ namespace WinForm
                 timeText.Text = (elapsed.TotalMilliseconds / 1000).ToString();
                 timeText.Text += " s";
 
-
-                //for (int i = 0; i < this.row; i++)
-                //{
-                //    for (int j = 0; j < this.col; j++)
-                //    {
-                //        if (solver.visited[i, j])
-                //        {
-                //            if (imageMatrix[i, j].BackColor == Color.White)
-                //            {
-                //                imageMatrix[i, j].BackColor = Color.Green;
-                //            } else if (imageMatrix[i,j].BackColor == Color.BlueViolet)
-                //            {
-                //                imageMatrix[i, j].BackColor = Color.Aqua;
-                //            }
-                //        }
-                //    }
-                //}
             }
         }
 
@@ -499,56 +437,6 @@ namespace WinForm
                 errorText.Anchor = AnchorStyles.Bottom;
                 errorText.BringToFront();
             }
-
-}
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void timeText_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sleepInputBox_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
-        {
 
         }
     }
