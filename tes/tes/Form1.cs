@@ -78,16 +78,24 @@ namespace WinForm
 
                 stopwatch.Start();
                 solver.Solve(start[0], start[1], path, Decimal.ToInt32(sleepInputBox.Value));
-                path = solver.path;
                 stopwatch.Stop();
 
                 string routetext = "";
-                for (int i = 0; i < path.Length; i++)
+
+                if (solver.path == "")
                 {
-                    routetext += path[i];
-                    if (i != path.Length - 1)
+                    routetext = "Route not found";
+                }
+                else
+                {
+                    path = solver.path;
+                    for (int i = 0; i < path.Length; i++)
                     {
-                        routetext += " - ";
+                        routetext += path[i];
+                        if (i != path.Length - 1)
+                        {
+                            routetext += " - ";
+                        }
                     }
                 }
 
