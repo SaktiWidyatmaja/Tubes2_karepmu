@@ -39,10 +39,10 @@ class Program
     static void Main(string[] args)
     {
         int[,] maze = {
-            {0, 0, 0, 0},
-            {0, 0, 1, 0},
-            {1, 0, 0, 0},
-            {1, 0, 1, 1}
+            {0, 0, 0, 0, 0, 0, 1},
+            {1, 0, 1, 0, 1, 0, 0},
+            {1, 0, 1, 0, 1, 0, 1},
+            {1, 0, 1, 1, 1, 0, 1}
         };
 
         List<Tuple<int, int>> goalStates = new List<Tuple<int, int>>();
@@ -50,7 +50,7 @@ class Program
         // goalStates.Add(new Tuple<int, int>(0, 0));
         goalStates.Add(new Tuple<int, int>(1, 3));
         goalStates.Add(new Tuple<int, int>(2, 1));
-        // goalStates.Add(new Tuple<int, int>(3, 1));
+        goalStates.Add(new Tuple<int, int>(3, 5));
 
         int[] start = new int[2];
         start[0] = 0;

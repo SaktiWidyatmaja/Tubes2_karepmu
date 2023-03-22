@@ -60,7 +60,7 @@ namespace BFS
 
             // Mark current cell as visited
             visited[startRow, startCol] = true;
-            Form1.outputRoute(startRow, startCol, true, sleepTime);
+            Form1.outputRoute(startRow, startCol, 1, sleepTime);
             Console.WriteLine("currentpath " + path);
 
             // Check if all goal states have been visited

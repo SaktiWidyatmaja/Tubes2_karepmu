@@ -106,7 +106,7 @@ namespace WinForm
 
         private void searchButtton_Click(object sender, EventArgs e)
         {
-            if (DFSbtn.Checked == true)
+            if (DFSbtn.Checked)
             {
                 Console.WriteLine("search with DFS");
 
@@ -146,24 +146,41 @@ namespace WinForm
                 this.duration = elapsed.TotalMilliseconds / 1000;
                 timeText.Text = this.duration.ToString();
                 timeText.Text += " s";
+            }
+
+            if (dfsMultivisitbtn.Checked)
+            {
+                Console.WriteLine("search with DFS Multivisit");
+
+                Stopwatch stopwatch = new Stopwatch();
+
+                DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates, start);
+
+                stopwatch.Start();
+                solver.SolveMultivisit(start[0], start[1], path, Decimal.ToInt32(sleepInputBox.Value));
+                path = solver.path;
+                stopwatch.Stop();
+
+                string routetext = "";
+                for (int i = 0; i < path.Length; i++)
+                {
+                    routetext += path[i];
+                    if (i != path.Length - 1)
+                    {
+                        routetext += " - ";
+                    }
+                }
+
+                routeText.Text = routetext;
+                stepsText.Text = path.Length.ToString();
+                nodesText.Text = solver.nodeCount.ToString();
+                routeText.Refresh();
 
 
-                //for (int i = 0; i < this.row; i++)
-                //{
-                //    for (int j = 0; j < this.col; j++)
-                //    {
-                //        if (solver.visited[i, j])
-                //        {
-                //            if (imageMatrix[i, j].BackColor == Color.White)
-                //            {
-                //                imageMatrix[i, j].BackColor = Color.Green;
-                //            } else if (imageMatrix[i,j].BackColor == Color.BlueViolet)
-                //            {
-                //                imageMatrix[i, j].BackColor = Color.Aqua;
-                //            }
-                //        }
-                //    }
-                //}
+                TimeSpan elapsed = stopwatch.Elapsed;
+                this.duration = elapsed.TotalMilliseconds / 1000;
+                timeText.Text = this.duration.ToString();
+                timeText.Text += " s";
             }
 
             if (BFSbtn.Checked == true)
@@ -229,23 +246,23 @@ namespace WinForm
         }
 
 
-        public static void outputRoute(int i, int j, bool isVisited, int sleepTime)
+        public static void outputRoute(int i, int j, int visitCount, int sleepTime)
         {
             Console.WriteLine("update gui color");
             Application.DoEvents();
-            if (isVisited)
+            if (visitCount != 0)
             {
-                if (imageMatrix[i, j].BackColor == Color.White)
+                if (map[i, j] == 'R')
                 {
-                    imageMatrix[i, j].BackColor = Color.Green;
+                    imageMatrix[i, j].BackColor = Color.FromArgb(0, (255 - visitCount * 50), 0);
                 }
-                else if (imageMatrix[i, j].BackColor == Color.BlueViolet)
+                else if (map[i, j] == 'T')
                 {
-                    imageMatrix[i, j].BackColor = Color.FromArgb(255, 255, 192);
+                    imageMatrix[i, j].BackColor = Color.FromArgb(0, (255 - visitCount * 50), (255 - visitCount * 50));
                 }
-                else if (imageMatrix[i, j].BackColor == Color.Red)
+                else if (map[i, j] == 'K')
                 {
-                    imageMatrix[i, j].BackColor = Color.Pink;
+                    imageMatrix[i, j].BackColor = Color.FromArgb((255 - visitCount * 50), 0, (255 - visitCount * 50));
                 }
             }
             else
