@@ -57,6 +57,7 @@ namespace WinForm
             this.sleepInputBox = new System.Windows.Forms.NumericUpDown();
             this.msSleep = new System.Windows.Forms.Label();
             this.TSPcheckBox = new System.Windows.Forms.CheckBox();
+            this.dfsMultivisitbtn = new System.Windows.Forms.RadioButton();
             this.SearchMethod.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.line)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sleepInputBox)).BeginInit();
@@ -152,17 +153,18 @@ namespace WinForm
             // 
             this.SearchMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.SearchMethod.AutoSize = true;
+            this.SearchMethod.Controls.Add(this.dfsMultivisitbtn);
             this.SearchMethod.Controls.Add(this.DFSbtn);
             this.SearchMethod.Controls.Add(this.BFSbtn);
             this.SearchMethod.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SearchMethod.ForeColor = System.Drawing.Color.Transparent;
             this.SearchMethod.Location = new System.Drawing.Point(-132, 501);
             this.SearchMethod.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SearchMethod.MaximumSize = new System.Drawing.Size(160, 123);
-            this.SearchMethod.MinimumSize = new System.Drawing.Size(160, 123);
+            this.SearchMethod.MaximumSize = new System.Drawing.Size(280, 160);
+            this.SearchMethod.MinimumSize = new System.Drawing.Size(280, 160);
             this.SearchMethod.Name = "SearchMethod";
             this.SearchMethod.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SearchMethod.Size = new System.Drawing.Size(160, 123);
+            this.SearchMethod.Size = new System.Drawing.Size(280, 160);
             this.SearchMethod.TabIndex = 17;
             this.SearchMethod.TabStop = false;
             this.SearchMethod.Enter += new System.EventHandler(this.SearchMethod_Enter);
@@ -187,7 +189,7 @@ namespace WinForm
             this.BFSbtn.AutoSize = true;
             this.BFSbtn.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BFSbtn.ForeColor = System.Drawing.Color.DarkRed;
-            this.BFSbtn.Location = new System.Drawing.Point(5, 64);
+            this.BFSbtn.Location = new System.Drawing.Point(5, 107);
             this.BFSbtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BFSbtn.Name = "BFSbtn";
             this.BFSbtn.Size = new System.Drawing.Size(104, 49);
@@ -394,7 +396,7 @@ namespace WinForm
             0,
             0});
             this.sleepInputBox.Location = new System.Drawing.Point(53, 731);
-            this.sleepInputBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sleepInputBox.Margin = new System.Windows.Forms.Padding(4);
             this.sleepInputBox.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -425,14 +427,29 @@ namespace WinForm
             this.TSPcheckBox.AutoSize = true;
             this.TSPcheckBox.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold);
             this.TSPcheckBox.ForeColor = System.Drawing.Color.DarkRed;
-            this.TSPcheckBox.Location = new System.Drawing.Point(79, 523);
-            this.TSPcheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TSPcheckBox.Location = new System.Drawing.Point(241, 522);
+            this.TSPcheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.TSPcheckBox.Name = "TSPcheckBox";
             this.TSPcheckBox.Size = new System.Drawing.Size(106, 49);
             this.TSPcheckBox.TabIndex = 35;
             this.TSPcheckBox.Text = "TSP";
             this.TSPcheckBox.UseVisualStyleBackColor = true;
             this.TSPcheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // dfsMultivisitbtn
+            // 
+            this.dfsMultivisitbtn.AutoSize = true;
+            this.dfsMultivisitbtn.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dfsMultivisitbtn.ForeColor = System.Drawing.Color.DarkRed;
+            this.dfsMultivisitbtn.Location = new System.Drawing.Point(5, 64);
+            this.dfsMultivisitbtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dfsMultivisitbtn.Name = "dfsMultivisitbtn";
+            this.dfsMultivisitbtn.Size = new System.Drawing.Size(285, 49);
+            this.dfsMultivisitbtn.TabIndex = 3;
+            this.dfsMultivisitbtn.TabStop = true;
+            this.dfsMultivisitbtn.Text = "DFS (Multivisit)";
+            this.dfsMultivisitbtn.UseVisualStyleBackColor = true;
+            this.dfsMultivisitbtn.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged_1);
             // 
             // Form1
             // 
@@ -506,6 +523,7 @@ namespace WinForm
         private System.Windows.Forms.NumericUpDown sleepInputBox;
         private System.Windows.Forms.Label msSleep;
         private System.Windows.Forms.CheckBox TSPcheckBox;
+        internal System.Windows.Forms.RadioButton dfsMultivisitbtn;
     }
 }
 

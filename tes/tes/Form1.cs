@@ -529,5 +529,10 @@ namespace WinForm
         {
 
         }
+
+        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
