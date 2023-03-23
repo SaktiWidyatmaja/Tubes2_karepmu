@@ -246,14 +246,18 @@ namespace WinForm
             {
                 Console.WriteLine("input tidak valid");
                 Console.WriteLine($"Error : Invalid Data Input");
-                System.Windows.Forms.TextBox errorText = new System.Windows.Forms.TextBox();
+                System.Windows.Forms.Label errorText = new System.Windows.Forms.Label();
                 errorText.Text = "INPUT FILE INVALID!";
-                errorText.Location = new Point(738, 200);
+                Font newFont = new Font(errorText.Font.FontFamily, 50, errorText.Font.Style);
+                errorText.Font = newFont;
+                errorText.Location = new Point(638, 300);
+                errorText.Size = new Size(700, 80);
                 errorText.BackColor = Color.Black;
                 errorText.ForeColor = Color.Red;
                 errorText.Anchor = AnchorStyles.Top;
                 errorText.Anchor = AnchorStyles.Bottom;
                 errorText.BringToFront();
+                Controls.Add(errorText);
             }
         }
 

@@ -155,11 +155,11 @@ namespace WinForm
             this.SearchMethod.ForeColor = System.Drawing.Color.Transparent;
             this.SearchMethod.Location = new System.Drawing.Point(-107, 501);
             this.SearchMethod.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SearchMethod.MaximumSize = new System.Drawing.Size(280, 160);
-            this.SearchMethod.MinimumSize = new System.Drawing.Size(280, 160);
+            this.SearchMethod.MaximumSize = new System.Drawing.Size(340, 160);
+            this.SearchMethod.MinimumSize = new System.Drawing.Size(340, 160);
             this.SearchMethod.Name = "SearchMethod";
             this.SearchMethod.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SearchMethod.Size = new System.Drawing.Size(280, 160);
+            this.SearchMethod.Size = new System.Drawing.Size(340, 160);
             this.SearchMethod.TabIndex = 17;
             this.SearchMethod.TabStop = false;
             // 
@@ -396,7 +396,7 @@ namespace WinForm
             0,
             0});
             this.sleepInputBox.Location = new System.Drawing.Point(78, 731);
-            this.sleepInputBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sleepInputBox.Margin = new System.Windows.Forms.Padding(4);
             this.sleepInputBox.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -426,7 +426,7 @@ namespace WinForm
             this.TSPcheckBox.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold);
             this.TSPcheckBox.ForeColor = System.Drawing.Color.DarkRed;
             this.TSPcheckBox.Location = new System.Drawing.Point(266, 522);
-            this.TSPcheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TSPcheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.TSPcheckBox.Name = "TSPcheckBox";
             this.TSPcheckBox.Size = new System.Drawing.Size(106, 49);
             this.TSPcheckBox.TabIndex = 35;
