@@ -35,7 +35,7 @@ namespace BFS
             this.nodePath = new string[numRows, numCols];
         }
 
-        public void Solve(Tuple<int, int> startNode, ref string[] treasurePath, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup, bool tsp)
+        public void Solve(Tuple<int, int> startNode, ref string[] treasurePath, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup, bool tsp, int sleepTime)
         {
             int startRow = simpulHidup[0].Item1;
             int startCol = simpulHidup[0].Item2;
@@ -98,7 +98,7 @@ namespace BFS
                     pathPlan = "";
                     simpulHidup.Clear();
                     simpulHidup.Add(new Tuple<int, int>(startRow,startCol));
-                    Solve(startNode, ref treasurePath, ref pathPlan, ref simpulHidup, false);
+                    Solve(startNode, ref treasurePath, ref pathPlan, ref simpulHidup, false, sleepTime);
 
                 } else {
                     pathCount += 1;
@@ -137,7 +137,7 @@ namespace BFS
                 simpulHidup.Add(new Tuple<int, int>(startRow+1, startCol));
             }
 
-            Solve(startNode, ref treasurePath, ref pathPlan, ref simpulHidup, tsp);
+            Solve(startNode, ref treasurePath, ref pathPlan, ref simpulHidup, tsp, sleepTime);
             // BACKTRACKING
 
             // Mark current cell as unvisited 
