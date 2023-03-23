@@ -100,6 +100,13 @@ namespace WinForm
                     }
                 }
 
+                if (routetext.Length > 73)
+                {
+                    Font newSizeFont = new Font(routeText.Font.FontFamily, 11, routeText.Font.Style);
+                    routeText.Font = newSizeFont;
+                    routeText.Location = new Point(594, 739);
+                }
+
                 routeText.Text = routetext;
                 stepsText.Text = path.Length.ToString();
                 nodesText.Text = solver.nodeCount.ToString();
@@ -139,6 +146,13 @@ namespace WinForm
                             routetext += " - ";
                         }
                     }
+                }
+
+                if (routetext.Length > 73)
+                {
+                    Font newSizeFont = new Font(routeText.Font.FontFamily, 11, routeText.Font.Style);
+                    routeText.Font = newSizeFont;
+                    routeText.Location = new Point(594, 739);
                 }
 
                 routeText.Text = routetext;
@@ -189,6 +203,7 @@ namespace WinForm
                 {
                     Font newSizeFont = new Font(routeText.Font.FontFamily, 11, routeText.Font.Style);
                     routeText.Font = newSizeFont;
+                    routeText.Location = new Point(594, 739);
                 }
 
                 routeText.Text = routetext;
