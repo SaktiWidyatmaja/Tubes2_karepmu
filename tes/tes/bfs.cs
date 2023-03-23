@@ -60,6 +60,7 @@ namespace BFS
             // Check if current cell is a goal state
             if (IsGoalState(startRow, startCol))
             {
+                treasurePath[numGoalsVisited] = nodePath[startRow, startCol];
                 // Increment number of goals visited and add path to current goal state to paths list
                 numGoalsVisited++;
                 
@@ -75,7 +76,6 @@ namespace BFS
                     }
                 }
 
-                numGoalsVisited = 0;
                 pathCount = 0;
                 simpulHidup.Clear();
                 simpulHidup.Add(new Tuple<int, int>(startRow, startCol));
