@@ -170,13 +170,19 @@ namespace WinForm
                 stopwatch.Stop();
 
                 string routetext = "";
-                for (int i = 0; i < path.Length; i++)
+                for (int i = 0; i < treasurePath.Length; i++)
                 {
-                    routetext += path[i];
-                    if (i != path.Length - 1)
+                    routetext += treasurePath[i];
+                    if (i != treasurePath.Length - 1)
                     {
                         routetext += " - ";
                     }
+                }
+
+                if (routetext.Length > 73)
+                {
+                    Font newSizeFont = new Font(routeText.Font.FontFamily, 9, routeText.Font.Style);
+                    routeText.Font = newSizeFont;
                 }
 
                 routeText.Text = routetext;
@@ -404,27 +410,30 @@ namespace WinForm
                         var pictureBox = new PictureBox();
 
                         pictureBox.Location = new Point((j * 50) + 738, (i * 50) + 150);
+                        pictureBox.Size = new Size(46, 46);
+
+                        if (this.row > 8)
+                        {
+                            pictureBox.Location = new Point((j * 30) + 738, (i * 30) + 150);
+                            pictureBox.Size = new Size(25, 25);
+                        }
 
 
                         if (map[i, j] == 'K')
                         {
                             pictureBox.BackColor = Color.Red;
-                            pictureBox.Size = new Size(46, 46);
                         }
                         else if (map[i, j] == 'R')
                         {
                             pictureBox.BackColor = Color.White;
-                            pictureBox.Size = new Size(46, 46);
                         }
                         else if (map[i, j] == 'T')
                         {
                             pictureBox.BackColor = Color.BlueViolet;
-                            pictureBox.Size = new Size(46, 46);
                         }
                         else if (map[i, j] == 'X')
                         {
                             pictureBox.BackColor = Color.Black;
-                            pictureBox.Size = new Size(46, 46);
                         }
 
                         // set other properties of the picture box as needed
