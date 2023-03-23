@@ -152,7 +152,8 @@ namespace WinForm
 
                 Stopwatch stopwatch = new Stopwatch();
                 string pathPlan = "";
-                string[] treasurePath = new string[goalStates.Count];
+                //string[] treasurePath = new string[goalStates.Count];
+                string treasurePath = "";
                 List<Tuple<int, int>> simpulHidup = new List<Tuple<int, int>>();
                 simpulHidup.Add(new Tuple<int, int>(start[0], start[1]));
                 // bool tsp;
@@ -207,15 +208,15 @@ namespace WinForm
             {
                 if (map[i, j] == 'R')
                 {
-                    imageMatrix[i, j].BackColor = Color.FromArgb(0, (255 - visitCount * 50), 0);
+                    imageMatrix[i, j].BackColor = Color.FromArgb(0, (255 - visitCount * 20), 0);
                 }
                 else if (map[i, j] == 'T')
                 {
-                    imageMatrix[i, j].BackColor = Color.FromArgb(0, (255 - visitCount * 50), (255 - visitCount * 50));
+                    imageMatrix[i, j].BackColor = Color.FromArgb(0, (255 - visitCount * 20), (255 - visitCount * 20));
                 }
                 else if (map[i, j] == 'K')
                 {
-                    imageMatrix[i, j].BackColor = Color.FromArgb((255 - visitCount * 50), 0, (255 - visitCount * 50));
+                    imageMatrix[i, j].BackColor = Color.FromArgb((255 - visitCount * 20), 0, (255 - visitCount * 20));
                 }
             }
             else
