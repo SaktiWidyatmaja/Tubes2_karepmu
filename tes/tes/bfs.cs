@@ -33,6 +33,11 @@ namespace BFS
             this.nodeCount = 0;
             this.path = "";
             this.nodePath = new string[numRows, numCols];
+            for (int i = 0; i < numRows; i++) {
+                for (int j = 0; j < numCols; j++) {
+                    this.nodePath[i, j] = "";
+                }
+            }
         }
 
         public void Solve(Tuple<int, int> startNode, ref string[] treasurePath, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup, bool tsp, int sleepTime)
@@ -57,7 +62,7 @@ namespace BFS
             // Check if current cell is a goal state
             if (IsGoalState(startRow, startCol))
             {
-                treasurePath[numGoalsVisited] = nodePath[startRow, startRow];
+                treasurePath[numGoalsVisited] = nodePath[startRow, startCol];
                 // Increment number of goals visited and add path to current goal state to paths list
                 numGoalsVisited++;
                 Console.WriteLine("Path that visited goal " + numGoalsVisited + ": " + treasurePath[numGoalsVisited-1]);
@@ -104,44 +109,48 @@ namespace BFS
                 // Console.WriteLine("L");
 
                 pathPlan += "L";
-                nodePath[startRow, startCol - 1] += "L";
+                nodePath[startRow, startCol - 1] = nodePath[startRow, startCol] + "L";
+                Console.WriteLine("Path " + startRow + " " + (startCol - 1) + ": " + path);
                 simpulHidup.Add(new Tuple<int, int>(startRow, startCol-1));
             }
             if (CanMove(startRow, startCol + 1)) // move right
             {
                 // Console.WriteLine("R");
                 pathPlan += "R";
-                nodePath[startRow, startCol + 1] += "R";
+                nodePath[startRow, startCol + 1] = nodePath[startRow, startCol] + "R";
+                Console.WriteLine("Path " + startRow + " " + (startCol + 1) + ": " + path);
                 simpulHidup.Add(new Tuple<int, int>(startRow, startCol+1));
             }
             if (CanMove(startRow - 1, startCol)) // move up
             {
                 // Console.WriteLine("U");
                 pathPlan += "U";
-                nodePath[startRow - 1, startCol] += "U";
+                nodePath[startRow - 1, startCol] = nodePath[startRow, startCol] + "U";
+                Console.WriteLine("Path " + (startRow - 1) + " " + startCol + ": " + path);
                 simpulHidup.Add(new Tuple<int, int>(startRow-1, startCol));
             }
             if (CanMove(startRow + 1, startCol)) // move down
             {
                 // Console.WriteLine("D");
                 pathPlan += "D";
-                nodePath[startRow + 1, startCol] += "D";
+                nodePath[startRow + 1, startCol] = nodePath[startRow, startCol] + "D";
+                Console.WriteLine("Path " + (startRow + 1) + " " + startCol + ": " + path);
                 simpulHidup.Add(new Tuple<int, int>(startRow+1, startCol));
             }
 
             Solve(startNode, ref treasurePath, ref pathPlan, ref simpulHidup, tsp, sleepTime);
-            // BACKTRACKING
+            // // BACKTRACKING
 
-            // Mark current cell as unvisited 
-            visited[startRow, startCol] = false;
-            Console.WriteLine("back " + path);
-            nodeCount++;
+            // // Mark current cell as unvisited 
+            // visited[startRow, startCol] = false;
+            // Console.WriteLine("back " + path);
+            // nodeCount++;
 
-            // Decrement number of goals visited (if necessary)
-            if (IsGoalState(startRow, startCol))
-            {
-                numGoalsVisited--;
-            }
+            // // Decrement number of goals visited (if necessary)
+            // if (IsGoalState(startRow, startCol))
+            // {
+            //     numGoalsVisited--;
+            // }
 
         }
 
