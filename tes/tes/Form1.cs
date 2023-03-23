@@ -157,9 +157,7 @@ namespace WinForm
                 Console.WriteLine("search with BFS");
 
                 Stopwatch stopwatch = new Stopwatch();
-                string pathPlan = "";
-                //string[] treasurePath = new string[goalStates.Count];
-                string treasurePath = "";
+                string[] treasurePath = new string[goalStates.Count];
                 List<Tuple<int, int>> simpulHidup = new List<Tuple<int, int>>();
                 simpulHidup.Add(new Tuple<int, int>(start[0], start[1]));
                 // bool tsp;
@@ -171,8 +169,7 @@ namespace WinForm
                 // } else {
                 //     tsp = false;
                 // }
-                // solver.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, tsp);
-                solver.Solve(simpulHidup[0], ref treasurePath, ref pathPlan, ref simpulHidup, false, Decimal.ToInt32(sleepInputBox.Value));
+                solver.Solve(simpulHidup[0], ref treasurePath, ref simpulHidup, false, Decimal.ToInt32(sleepInputBox.Value));
                 path = solver.path;
                 stopwatch.Stop();
 
