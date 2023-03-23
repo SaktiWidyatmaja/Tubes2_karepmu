@@ -67,12 +67,12 @@ namespace WinForm
             {
                 Console.WriteLine("search with DFS");
 
-                if (TSPcheckBox.Checked)
-                {
-                    Console.WriteLine("TSP");
-                    goalStates.Add(new Tuple<int, int>(start[0], start[1]));
-                    goalStates.Add(new Tuple<int, int>(start[0], start[1]));
-                }
+                //if (TSPcheckBox.Checked)
+                //{
+                //    Console.WriteLine("TSP");
+                //    goalStates.Add(new Tuple<int, int>(start[0], start[1]));
+                //    goalStates.Add(new Tuple<int, int>(start[0], start[1]));
+                //}
 
                 Stopwatch stopwatch = new Stopwatch();
                 DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates, start);
@@ -164,20 +164,22 @@ namespace WinForm
                 BFSMazeSolver solver = new BFSMazeSolver(mapInt, goalStates);
 
                 stopwatch.Start();
-                // if (toggletsp){
-                //     tsp = true;
-                // } else {
-                //     tsp = false;
-                // }
-                solver.Solve(simpulHidup[0], ref treasurePath, ref simpulHidup, false, Decimal.ToInt32(sleepInputBox.Value));
+                if (TSPcheckBox.Checked == true)
+                {
+                    solver.Solve(simpulHidup[0], ref treasurePath, ref simpulHidup, true, Decimal.ToInt32(sleepInputBox.Value));
+                }
+                else
+                {
+                    solver.Solve(simpulHidup[0], ref treasurePath, ref simpulHidup, false, Decimal.ToInt32(sleepInputBox.Value));
+                }
                 path = solver.path;
                 stopwatch.Stop();
 
                 string routetext = "";
-                for (int i = 0; i < treasurePath.Length; i++)
+                for (int i = 0; i < path.Length; i++)
                 {
-                    routetext += treasurePath[i];
-                    if (i != treasurePath.Length - 1)
+                    routetext += path[i];
+                    if (i != path.Length - 1)
                     {
                         routetext += " - ";
                     }
@@ -185,7 +187,7 @@ namespace WinForm
 
                 if (routetext.Length > 73)
                 {
-                    Font newSizeFont = new Font(routeText.Font.FontFamily, 9, routeText.Font.Style);
+                    Font newSizeFont = new Font(routeText.Font.FontFamily, 11, routeText.Font.Style);
                     routeText.Font = newSizeFont;
                 }
 
