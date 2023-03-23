@@ -235,7 +235,23 @@ namespace WinForm
 
         private void visualBtn_Click(object sender, EventArgs e)
         {
-            Map();
+            try
+            {
+                Map();
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine("input tidak valid");
+                Console.WriteLine($"Error : Invalid Data Input");
+                System.Windows.Forms.TextBox errorText = new System.Windows.Forms.TextBox();
+                errorText.Text = "INPUT FILE INVALID!";
+                errorText.Location = new Point(738, 200);
+                errorText.BackColor = Color.Black;
+                errorText.ForeColor = Color.Red;
+                errorText.Anchor = AnchorStyles.Top;
+                errorText.Anchor = AnchorStyles.Bottom;
+                errorText.BringToFront();
+            }
         }
 
         private void line_Click(object sender, EventArgs e)
@@ -346,13 +362,14 @@ namespace WinForm
                     {
                         k++;
                     }
+
+                    if (lines[i][k] != 'R' && lines[i][k] != 'T' && lines[i][k] != 'T' && lines[i][k] != 'K' && lines[i][k] != 'X') {
+                        throw new Exception();
+                    }
+
                     map[i, j] = lines[i][k];
                     Console.Write(map[i, j]);
                     k++;
-
-                    // if (lines[i][k] != 'R' && lines[i][k] != 'T' && lines[i][k] != 'T' && lines[i][k] != 'K' && lines[i][k] != 'X') {
-                        // throw new InvalidDataException("input invalid");
-                    // }
                 }
 
                 Console.Write("\n");
@@ -365,98 +382,82 @@ namespace WinForm
         {
             string[] lines = System.IO.File.ReadAllLines(openFile1.FileName);
 
-
-            try
+            //Kalau udah ada input file, hapus dulu semua data
+            if (this.row != 0)
             {
-                //Kalau udah ada input file, hapus dulu semua data
-                if (this.row != 0)
+                for (int i = 0; i < row; i++)
                 {
-                    for (int i = 0; i < row; i++)
+                    for (int j = 0; j < col; j++)
                     {
-                        for (int j = 0; j < col; j++)
-                        {
-                            Controls.Remove(imageMatrix[i, j]);
-                        }
-                    }
-                    this.row = 0;
-                    this.col = 0;
-                    this.duration = 0;
-
-                    map = new char[0, 0];
-                    start = new int[2];
-                    path = "";
-                    mapInt = new int[0, 0];
-                    goalStates = new List<Tuple<int, int>>();
-                }
-
-                PictureBox backGroundMap = new PictureBox();
-                backGroundMap.BackColor = Color.Black;
-                backGroundMap.Location = new Point(587, 124);
-                backGroundMap.Size = new Size(880, 460);
-                Controls.Add(backGroundMap);
-                backGroundMap.SendToBack();
-
-                this.row = lines.Length;
-                this.col = lines[0].Split(' ').Length;
-                map = ConvertMap(openFile1.FileName, this.row, this.col);
-
-                int[,] MapInt = ConvertMapToInt(map, this.row, this.col, this.start);
-
-                imageMatrix = new PictureBox[this.row, this.col];
-
-                for (int i = 0; i < this.row; i++)
-                {
-                    for (int j = 0; j < this.col; j++)
-                    {
-                        var pictureBox = new PictureBox();
-
-                        pictureBox.Location = new Point((j * 50) + 738, (i * 50) + 150);
-                        pictureBox.Size = new Size(46, 46);
-
-                        if (this.row > 8)
-                        {
-                            pictureBox.Location = new Point((j * 30) + 738, (i * 30) + 150);
-                            pictureBox.Size = new Size(25, 25);
-                        }
-
-
-                        if (map[i, j] == 'K')
-                        {
-                            pictureBox.BackColor = Color.Red;
-                        }
-                        else if (map[i, j] == 'R')
-                        {
-                            pictureBox.BackColor = Color.White;
-                        }
-                        else if (map[i, j] == 'T')
-                        {
-                            pictureBox.BackColor = Color.BlueViolet;
-                        }
-                        else if (map[i, j] == 'X')
-                        {
-                            pictureBox.BackColor = Color.Black;
-                        }
-
-                        // set other properties of the picture box as needed
-
-                        imageMatrix[i, j] = pictureBox;
-                        Controls.Add(imageMatrix[i, j]);
-                        imageMatrix[i, j].BringToFront();
+                        Controls.Remove(imageMatrix[i, j]);
                     }
                 }
-            }
-            catch (InvalidDataException e) {
-                Console.WriteLine($"Error : Invalid Data Input");
-                System.Windows.Forms.TextBox errorText = new System.Windows.Forms.TextBox();
-                errorText.Text = "INPUT FILE INVALID!";
-                errorText.Location = new Point(738, 200);
-                errorText.BackColor = Color.Black;
-                errorText.ForeColor = Color.Red;
-                errorText.Anchor = AnchorStyles.Top;
-                errorText.Anchor = AnchorStyles.Bottom;
-                errorText.BringToFront();
+                this.row = 0;
+                this.col = 0;
+                this.duration = 0;
+
+                map = new char[0, 0];
+                start = new int[2];
+                path = "";
+                mapInt = new int[0, 0];
+                goalStates = new List<Tuple<int, int>>();
             }
 
+            this.row = lines.Length;
+            this.col = lines[0].Split(' ').Length;
+            map = ConvertMap(openFile1.FileName, this.row, this.col);
+
+            PictureBox backGroundMap = new PictureBox();
+            backGroundMap.BackColor = Color.Black;
+            backGroundMap.Location = new Point(587, 124);
+            backGroundMap.Size = new Size(880, 460);
+            Controls.Add(backGroundMap);
+            backGroundMap.SendToBack();
+
+            int[,] MapInt = ConvertMapToInt(map, this.row, this.col, this.start);
+
+            imageMatrix = new PictureBox[this.row, this.col];
+
+            for (int i = 0; i < this.row; i++)
+            {
+                for (int j = 0; j < this.col; j++)
+                {
+                    var pictureBox = new PictureBox();
+
+                    pictureBox.Location = new Point((j * 50) + 738, (i * 50) + 150);
+                    pictureBox.Size = new Size(46, 46);
+
+                    if (this.row > 8)
+                    {
+                        pictureBox.Location = new Point((j * 30) + 738, (i * 30) + 150);
+                        pictureBox.Size = new Size(25, 25);
+                    }
+
+
+                    if (map[i, j] == 'K')
+                    {
+                        pictureBox.BackColor = Color.Red;
+                    }
+                    else if (map[i, j] == 'R')
+                    {
+                        pictureBox.BackColor = Color.White;
+                    }
+                    else if (map[i, j] == 'T')
+                    {
+                        pictureBox.BackColor = Color.BlueViolet;
+                    }
+                    else if (map[i, j] == 'X')
+                    {
+                        pictureBox.BackColor = Color.Black;
+                    }
+
+                    // set other properties of the picture box as needed
+
+                    imageMatrix[i, j] = pictureBox;
+                    Controls.Add(imageMatrix[i, j]);
+                    imageMatrix[i, j].BringToFront();
+                }
+            }
         }
     }
 }
