@@ -18,7 +18,7 @@ namespace BFS
         private int pathCount;
         public int nodeCount;
         public string path;
-        public string[,] nodePath;
+        private string[,] nodePath;
         
 
         public BFSMazeSolver(int[,] maze, List<Tuple<int, int>> goalStates)
@@ -111,21 +111,21 @@ namespace BFS
             {
                 // Console.WriteLine("R");
                 pathPlan += "R";
-                nodePath[startRow, startCol - 1] += "L";
+                nodePath[startRow, startCol + 1] += "R";
                 simpulHidup.Add(new Tuple<int, int>(startRow, startCol+1));
             }
             if (CanMove(startRow - 1, startCol)) // move up
             {
                 // Console.WriteLine("U");
                 pathPlan += "U";
-                nodePath[startRow, startCol - 1] += "L";
+                nodePath[startRow - 1, startCol] += "U";
                 simpulHidup.Add(new Tuple<int, int>(startRow-1, startCol));
             }
             if (CanMove(startRow + 1, startCol)) // move down
             {
                 // Console.WriteLine("D");
                 pathPlan += "D";
-                nodePath[startRow, startCol - 1] += "L";
+                nodePath[startRow + 1, startCol] += "D";
                 simpulHidup.Add(new Tuple<int, int>(startRow+1, startCol));
             }
 
