@@ -33,11 +33,6 @@ namespace BFS
             this.nodeCount = 0;
             this.path = "";
             this.nodePath = new string[numRows, numCols];
-            for (int i = 0; i < numRows; i++) {
-                for (int j = 0; j < numCols; j++) {
-                    this.nodePath[i, j] = "";
-                }
-            }
         }
 
         public void Solve(Tuple<int, int> startNode, ref string[] treasurePath, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup, bool tsp, int sleepTime)
@@ -50,12 +45,10 @@ namespace BFS
             }
             simpulHidup.RemoveAt(0);
 
-            // if (!(tsp)){
             if (pathCount == 1)
             {
                 return;
             }
-            // }
 
             nodeCount++;
 
@@ -106,8 +99,6 @@ namespace BFS
             // Check all possible moves from current cell
             if (CanMove(startRow, startCol - 1)) // move left
             {
-                // Console.WriteLine("L");
-
                 pathPlan += "L";
                 nodePath[startRow, startCol - 1] = nodePath[startRow, startCol] + "L";
                 Console.WriteLine("Path " + startRow + " " + (startCol - 1) + ": " + path);
@@ -115,7 +106,6 @@ namespace BFS
             }
             if (CanMove(startRow, startCol + 1)) // move right
             {
-                // Console.WriteLine("R");
                 pathPlan += "R";
                 nodePath[startRow, startCol + 1] = nodePath[startRow, startCol] + "R";
                 Console.WriteLine("Path " + startRow + " " + (startCol + 1) + ": " + path);
@@ -123,7 +113,6 @@ namespace BFS
             }
             if (CanMove(startRow - 1, startCol)) // move up
             {
-                // Console.WriteLine("U");
                 pathPlan += "U";
                 nodePath[startRow - 1, startCol] = nodePath[startRow, startCol] + "U";
                 Console.WriteLine("Path " + (startRow - 1) + " " + startCol + ": " + path);
@@ -131,7 +120,6 @@ namespace BFS
             }
             if (CanMove(startRow + 1, startCol)) // move down
             {
-                // Console.WriteLine("D");
                 pathPlan += "D";
                 nodePath[startRow + 1, startCol] = nodePath[startRow, startCol] + "D";
                 Console.WriteLine("Path " + (startRow + 1) + " " + startCol + ": " + path);
@@ -139,19 +127,6 @@ namespace BFS
             }
 
             Solve(startNode, ref treasurePath, ref pathPlan, ref simpulHidup, tsp, sleepTime);
-            // // BACKTRACKING
-
-            // // Mark current cell as unvisited 
-            // visited[startRow, startCol] = false;
-            // Console.WriteLine("back " + path);
-            // nodeCount++;
-
-            // // Decrement number of goals visited (if necessary)
-            // if (IsGoalState(startRow, startCol))
-            // {
-            //     numGoalsVisited--;
-            // }
-
         }
 
         private bool IsGoalState(int row, int col)
