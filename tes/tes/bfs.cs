@@ -43,9 +43,6 @@ namespace BFS
             this.path = "";
             this.nodePath = new string[numRows, numCols];
         }
-
-        // public void Solve(Tuple<int, int> startNode, ref int numReachedGoal, ref string[] treasurePath, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup, bool tsp, int sleepTime)
-        // public void Solve(Tuple<int, int> startNode, ref int numReachedGoal, ref string[] treasurePath, ref List<Tuple<int, int>> simpulHidup, bool tsp, int sleepTime)
         public void Solve(Tuple<int, int> startNode, ref string[] treasurePath, ref List<Tuple<int, int>> simpulHidup, bool tsp, int sleepTime)
         {
             int startRow = simpulHidup[0].Item1;
@@ -186,8 +183,8 @@ namespace BFS
             {
                 return false;
             }
+            
             // Check if cell is not a wall and has not been visited
-            // if (maze[row, col] == 1)
             if (maze[row, col] == 1 || visited[row, col])
             {
                 return false;
