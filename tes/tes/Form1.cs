@@ -171,19 +171,19 @@ namespace WinForm
                 Console.WriteLine("search with BFS");
 
                 Stopwatch stopwatch = new Stopwatch();
-                string[] treasurePath = new string[goalStates.Count];
                 List<Tuple<int, int>> simpulHidup = new List<Tuple<int, int>>();
                 simpulHidup.Add(new Tuple<int, int>(start[0], start[1]));
-                // bool tsp;
                 BFSMazeSolver solver = new BFSMazeSolver(mapInt, goalStates);
 
                 stopwatch.Start();
                 if (TSPcheckBox.Checked == true)
                 {
+                    string[] treasurePath = new string[goalStates.Count+1];
                     solver.Solve(simpulHidup[0], ref treasurePath, ref simpulHidup, true, Decimal.ToInt32(sleepInputBox.Value));
                 }
                 else
                 {
+                    string[] treasurePath = new string[goalStates.Count];
                     solver.Solve(simpulHidup[0], ref treasurePath, ref simpulHidup, false, Decimal.ToInt32(sleepInputBox.Value));
                 }
                 path = solver.path;
