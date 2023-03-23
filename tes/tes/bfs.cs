@@ -18,6 +18,8 @@ namespace BFS
         private int pathCount;
         public int nodeCount;
         public string path;
+        public string[,] nodePath;
+        
 
         public BFSMazeSolver(int[,] maze, List<Tuple<int, int>> goalStates)
         {
@@ -30,9 +32,10 @@ namespace BFS
             this.pathCount = 0;
             this.nodeCount = 0;
             this.path = "";
+            this.nodePath = new string[numRows, numCols];
         }
 
-        public void Solve(Tuple<int, int> startNode, ref string path, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup, bool tsp)
+        public void Solve(Tuple<int, int> startNode, ref string[] treasurePath, ref string pathPlan, ref List<Tuple<int, int>> simpulHidup, bool tsp)
         {
             int startRow = simpulHidup[0].Item1;
             int startCol = simpulHidup[0].Item2;
@@ -64,6 +67,16 @@ namespace BFS
             // Check if all goal states have been visited
             if (numGoalsVisited == goalStates.Count)
             {
+                int k = 0;
+
+                foreach (Tuple<int, int> goalState in goalStates)
+                {
+                    treasurePath[k] = nodePath[goalState.Item1, goalState.Item2];
+                    Console.WriteLine("Path that visited goal " + k+1 + ": " + treasurePath[k]);
+
+                    k++;
+                }
+
                 Console.WriteLine("Path that visited all goal states: " + path);
                 if (tsp) {
                     this.goalStates.Clear();
@@ -83,7 +96,7 @@ namespace BFS
                     pathPlan = "";
                     simpulHidup.Clear();
                     simpulHidup.Add(new Tuple<int, int>(startRow,startCol));
-                    Solve(startNode, ref path, ref pathPlan, ref simpulHidup, false);
+                    Solve(startNode, ref treasurePath, ref pathPlan, ref simpulHidup, false);
 
                 } else {
                     pathCount += 1;
@@ -95,29 +108,34 @@ namespace BFS
             if (CanMove(startRow, startCol - 1)) // move left
             {
                 // Console.WriteLine("L");
+
                 pathPlan += "L";
+                nodePath[startRow, startCol - 1] += "L";
                 simpulHidup.Add(new Tuple<int, int>(startRow, startCol-1));
             }
             if (CanMove(startRow, startCol + 1)) // move right
             {
                 // Console.WriteLine("R");
                 pathPlan += "R";
+                nodePath[startRow, startCol - 1] += "L";
                 simpulHidup.Add(new Tuple<int, int>(startRow, startCol+1));
             }
             if (CanMove(startRow - 1, startCol)) // move up
             {
                 // Console.WriteLine("U");
                 pathPlan += "U";
+                nodePath[startRow, startCol - 1] += "L";
                 simpulHidup.Add(new Tuple<int, int>(startRow-1, startCol));
             }
             if (CanMove(startRow + 1, startCol)) // move down
             {
                 // Console.WriteLine("D");
                 pathPlan += "D";
+                nodePath[startRow, startCol - 1] += "L";
                 simpulHidup.Add(new Tuple<int, int>(startRow+1, startCol));
             }
 
-            Solve(startNode, ref path, ref pathPlan, ref simpulHidup, tsp);
+            Solve(startNode, ref treasurePath, ref pathPlan, ref simpulHidup, tsp);
             // BACKTRACKING
 
             // Mark current cell as unvisited 

@@ -164,6 +164,7 @@ namespace WinForm
                 
                 Stopwatch stopwatch = new Stopwatch();
                 string pathPlan = "";
+                string[] treasurePath = new string[goalStates.Count];
                 List<Tuple<int, int>> simpulHidup = new List<Tuple<int, int>>();
                 simpulHidup.Add(new Tuple<int, int>(0, 0));
                 // bool tsp;
@@ -176,7 +177,7 @@ namespace WinForm
                 //     tsp = false;
                 // }
                 // solver.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, tsp);
-                solver.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, false);
+                solver.Solve(simpulHidup[0], ref treasurePath, ref pathPlan, ref simpulHidup, false);
                 // path = solver.path;
                 stopwatch.Stop();
 
