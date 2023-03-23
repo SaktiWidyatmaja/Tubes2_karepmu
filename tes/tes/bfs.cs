@@ -57,8 +57,10 @@ namespace BFS
             // Check if current cell is a goal state
             if (IsGoalState(startRow, startCol))
             {
+                treasurePath[numGoalsVisited] = nodePath[startRow, startRow];
                 // Increment number of goals visited and add path to current goal state to paths list
                 numGoalsVisited++;
+                Console.WriteLine("Path that visited goal " + numGoalsVisited + ": " + treasurePath[numGoalsVisited-1]);
             }
 
             // Mark current cell as visited
@@ -69,16 +71,6 @@ namespace BFS
             // Check if all goal states have been visited
             if (numGoalsVisited == goalStates.Count)
             {
-                int k = 0;
-
-                foreach (Tuple<int, int> goalState in goalStates)
-                {
-                    treasurePath[k] = nodePath[goalState.Item1, goalState.Item2];
-                    Console.WriteLine("Path that visited goal " + k+1 + ": " + treasurePath[k]);
-
-                    k++;
-                }
-
                 Console.WriteLine("Path that visited all goal states: " + path);
                 if (tsp) {
                     this.goalStates.Clear();

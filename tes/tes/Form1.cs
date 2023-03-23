@@ -165,8 +165,8 @@ namespace WinForm
                 //     tsp = false;
                 // }
                 // solver.Solve(simpulHidup[0], ref path, ref pathPlan, ref simpulHidup, tsp);
-                solver.Solve(simpulHidup[0], ref treasurePath, ref pathPlan, ref simpulHidup, false);
-                // path = solver.path;
+                solver.Solve(simpulHidup[0], ref treasurePath, ref pathPlan, ref simpulHidup, false, Decimal.ToInt32(sleepInputBox.Value));
+                path = solver.path;
                 stopwatch.Stop();
 
                 string routetext = "";
