@@ -11,18 +11,19 @@ namespace DFS
     {
         private int[,] maze; // a 2D array representing the maze
         public bool[,] visited; // a 2D array keeping track of visited cells
-        public int[,] visitCount;
+        public int[,] visitCount; // a 2D array keeping track of how many times a cell is visited
         private int numRows; // number of rows in the maze
         private int numCols; // number of columns in the maze
-        private List<Tuple<int, int>> goalStates; // list of goal states in the maze
+        private List<Tuple<int, int>> goalStates; // list of goal states in the maze (treasures)
         private int numGoalsVisited; // number of goal states visited in current path
-        private List<Tuple<int, int>> goalsVisited;
-        private bool isFound;
-        private int[] startState;
-        private int startCount;
-        public int nodeCount;
-        public string path;
+        private List<Tuple<int, int>> goalsVisited; // list of goals' cell visited already
+        private bool isFound; // found the path/route
+        private int[] startState; // start cell
+        private int startCount; // how many times start cell is visited (for tsp)
+        public int nodeCount; // heeping track of visited nodes
+        public string path; // string for path/route that visited all goals/treasures
 
+        // ctor
         public DFSMazeSolver(int[,] maze, List<Tuple<int, int>> goalStates, int[] start)
         {
             this.maze = maze;
@@ -47,14 +48,16 @@ namespace DFS
             this.path = "";
         }
 
+        // dfs multivisit
         public void SolveMultivisit(int startRow, int startCol, string path, int sleepTime)
         {
-
+            // if already found the path, stop the searching
             if (isFound)
             {
                 return;
             }
 
+            // increment visitCount for current cell
             visitCount[startRow, startCol]++;
             Form1.outputRoute(startRow, startCol, visitCount[startRow, startCol], sleepTime);
             Console.WriteLine("currentpath " + path);
@@ -77,10 +80,11 @@ namespace DFS
                 Console.WriteLine("Path that visited all goal states: " + path);
                 Console.WriteLine("Nodes : " + nodeCount);
                 this.path = path;
-                isFound = true;
-                return;
+                isFound = true; // path is found
+                return; // stop the searching
             }
 
+            // heuristic method: compare visitCount for all valid adjacent cells
             List<Tuple<char, int, int, int>> precedence = new List<Tuple<char, int, int, int>> { };
 
             if (isValidCell(startRow + 1, startCol)) // down
@@ -100,35 +104,33 @@ namespace DFS
                 precedence.Add(new Tuple<char, int, int, int>('L', visitCount[startRow, startCol - 1], startRow, startCol - 1));
             }
 
+            // order by visitCount (ascending)
             precedence = precedence.OrderByDescending(t => t.Item2).ToList();
-            Console.WriteLine("testing:");
+            
+            Console.WriteLine("order:");
             for (int i = precedence.Count - 1; i >= 0; i--)
             {
                 Console.Write(precedence[i].Item1 + " ");
                 Console.WriteLine(precedence[i].Item2);
             }
 
+            // solve for every valid adjacent cell (order by ascending visitCount)
             for (int i = precedence.Count - 1; i >= 0; i--)
             {
                 SolveMultivisit(precedence[i].Item3, precedence[i].Item4, path + precedence[i].Item1, sleepTime);
+                // if already found the path, stop the searching
                 if (isFound)
                 {
                     return;
                 }
             }
-
-            // BACKTRACKING
-
-            visitCount[startRow, startCol]++;
-            Form1.outputRoute(startRow, startCol, visitCount[startRow, startCol], sleepTime);
-            Console.WriteLine("backtrack " + path);
-            nodeCount++;
             return;
         }
 
+        // dfs (normal)
         public void Solve(int startRow, int startCol, string path, int sleepTime)
         {
-
+            // if already found the path, stop the searching
             if (isFound)
             {
                 return;
@@ -211,6 +213,7 @@ namespace DFS
             return;
         }
 
+        // check if a cell is a goal state
         private bool IsGoalState(int row, int col)
         {
             foreach (Tuple<int, int> goalState in goalStates)
@@ -223,11 +226,13 @@ namespace DFS
             return false;
         }
 
+        // check if a cell is a start state
         private bool IsStartState(int row, int col)
         {
             return (row == startState[0] && col == startState[1]);
         }
 
+        // check if a cell is a valid cell (for multivisit dfs)
         private bool isValidCell(int row, int col)
         {
             // Check if cell is within maze boundaries
@@ -243,6 +248,7 @@ namespace DFS
             return true;
         }
 
+        // check if a cell is a valid cell (for normal dfs)
         private bool CanMove(int row, int col)
         {
             // Check if cell is within maze boundaries

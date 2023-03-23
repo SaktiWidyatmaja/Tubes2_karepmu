@@ -20,6 +20,7 @@ namespace WinForm
 {
     public partial class Form1 : Form
     {
+        // attribute + initialization
         private int row = 0;
         private int col = 0;
         private static char[,] map = new char[0, 0];
@@ -28,7 +29,6 @@ namespace WinForm
         private static int[,] mapInt = new int[0, 0];
         private static List<Tuple<int, int>> goalStates = new List<Tuple<int, int>>();
         private double duration = 0;
-
         private static PictureBox[,] imageMatrix = new PictureBox[0, 0];
 
         public Form1()
@@ -37,6 +37,7 @@ namespace WinForm
         }
 
         private System.Windows.Forms.OpenFileDialog openFile1 = new OpenFileDialog();
+
         private void openFileBtn_Click(object sender, EventArgs e)
         {
             this.openFile1.InitialDirectory = @"C:\";
@@ -61,6 +62,7 @@ namespace WinForm
 
         private void searchButtton_Click(object sender, EventArgs e)
         {
+            path = "";
             if (DFSbtn.Checked)
             {
                 Console.WriteLine("search with DFS");
@@ -73,7 +75,6 @@ namespace WinForm
                 }
 
                 Stopwatch stopwatch = new Stopwatch();
-
                 DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates, start);
 
                 stopwatch.Start();
@@ -104,7 +105,6 @@ namespace WinForm
                 nodesText.Text = solver.nodeCount.ToString();
                 routeText.Refresh();
 
-
                 TimeSpan elapsed = stopwatch.Elapsed;
                 this.duration = elapsed.TotalMilliseconds / 1000;
                 timeText.Text = this.duration.ToString();
@@ -116,21 +116,28 @@ namespace WinForm
                 Console.WriteLine("search with DFS Multivisit");
 
                 Stopwatch stopwatch = new Stopwatch();
-
                 DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates, start);
 
                 stopwatch.Start();
                 solver.SolveMultivisit(start[0], start[1], path, Decimal.ToInt32(sleepInputBox.Value));
-                path = solver.path;
                 stopwatch.Stop();
 
                 string routetext = "";
-                for (int i = 0; i < path.Length; i++)
+
+                if (solver.path == "")
                 {
-                    routetext += path[i];
-                    if (i != path.Length - 1)
+                    routetext = "Route not found";
+                }
+                else
+                {
+                    path = solver.path;
+                    for (int i = 0; i < path.Length; i++)
                     {
-                        routetext += " - ";
+                        routetext += path[i];
+                        if (i != path.Length - 1)
+                        {
+                            routetext += " - ";
+                        }
                     }
                 }
 
@@ -138,7 +145,6 @@ namespace WinForm
                 stepsText.Text = path.Length.ToString();
                 nodesText.Text = solver.nodeCount.ToString();
                 routeText.Refresh();
-
 
                 TimeSpan elapsed = stopwatch.Elapsed;
                 this.duration = elapsed.TotalMilliseconds / 1000;
@@ -254,11 +260,6 @@ namespace WinForm
             }
         }
 
-        private void line_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             this.openFile1.InitialDirectory = @"C:\";
@@ -274,41 +275,6 @@ namespace WinForm
 
             this.openFile1.ReadOnlyChecked = true;
             this.openFile1.ShowReadOnly = true;
-        }
-
-
-        private void InitializeImageMatrix(char route, int rows, int cols)
-        {
-            PictureBox[,] imageMatrix = new PictureBox[rows, cols];
-
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < cols; j++)
-                {
-                    var pictureBox = new PictureBox();
-
-                    pictureBox.Location = new Point(j * 4 + 1253, i * 4 - 201);
-                    pictureBox.Size = new Size(3, 3);
-
-                    if (route == 'K')
-                    {
-                        pictureBox.BackColor = Color.Black;
-                    }
-                    else if (route == 'R')
-                    {
-                        pictureBox.BackColor = Color.Black;
-                    }
-                    else if (route == 'T')
-                    {
-                        pictureBox.BackColor = Color.Black;
-                    }
-
-                    // set other properties of the picture box as needed
-
-                    imageMatrix[i, j] = pictureBox;
-                    Controls.Add(pictureBox);
-                }
-            }
         }
 
         private int[,] ConvertMapToInt(char[,] map, int row, int col, int[] start)

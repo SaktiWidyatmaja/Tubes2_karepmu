@@ -263,7 +263,6 @@ namespace WinForm
             this.line.Size = new System.Drawing.Size(1, 800);
             this.line.TabIndex = 21;
             this.line.TabStop = false;
-            this.line.Click += new System.EventHandler(this.line_Click);
             // 
             // openFileDialog1
             // 
