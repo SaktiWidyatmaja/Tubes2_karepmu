@@ -38,7 +38,7 @@ namespace WinForm
             this.openFileBtn = new System.Windows.Forms.Button();
             this.algoritmaLabel = new System.Windows.Forms.Label();
             this.SearchMethod = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.dfsMultivisitbtn = new System.Windows.Forms.RadioButton();
             this.DFSbtn = new System.Windows.Forms.RadioButton();
             this.BFSbtn = new System.Windows.Forms.RadioButton();
             this.visualBtn = new System.Windows.Forms.Button();
@@ -57,6 +57,7 @@ namespace WinForm
             this.sleepLabel = new System.Windows.Forms.Label();
             this.sleepInputBox = new System.Windows.Forms.NumericUpDown();
             this.msSleep = new System.Windows.Forms.Label();
+            this.TSPcheckBox = new System.Windows.Forms.CheckBox();
             this.SearchMethod.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.line)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sleepInputBox)).BeginInit();
@@ -75,7 +76,6 @@ namespace WinForm
             this.title.TabIndex = 1;
             this.title.Text = "TREASURE HUNT SOLVER";
             this.title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.title.Click += new System.EventHandler(this.title_Click);
             // 
             // inputLabel
             // 
@@ -83,13 +83,12 @@ namespace WinForm
             this.inputLabel.AutoSize = true;
             this.inputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.inputLabel.Location = new System.Drawing.Point(65, 94);
+            this.inputLabel.Location = new System.Drawing.Point(-103, 94);
             this.inputLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.inputLabel.Name = "inputLabel";
             this.inputLabel.Size = new System.Drawing.Size(65, 26);
             this.inputLabel.TabIndex = 5;
             this.inputLabel.Text = "Input";
-            this.inputLabel.Click += new System.EventHandler(this.inputLabel_Click);
             // 
             // filenameLabel
             // 
@@ -97,13 +96,12 @@ namespace WinForm
             this.filenameLabel.AutoSize = true;
             this.filenameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filenameLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.filenameLabel.Location = new System.Drawing.Point(66, 205);
+            this.filenameLabel.Location = new System.Drawing.Point(-102, 205);
             this.filenameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.filenameLabel.Name = "filenameLabel";
             this.filenameLabel.Size = new System.Drawing.Size(137, 31);
             this.filenameLabel.TabIndex = 7;
             this.filenameLabel.Text = "File Name";
-            this.filenameLabel.Click += new System.EventHandler(this.filenameLabel_Click);
             // 
             // fileNamePlace
             // 
@@ -112,7 +110,7 @@ namespace WinForm
             this.fileNamePlace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fileNamePlace.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileNamePlace.ForeColor = System.Drawing.Color.Black;
-            this.fileNamePlace.Location = new System.Drawing.Point(70, 257);
+            this.fileNamePlace.Location = new System.Drawing.Point(-98, 257);
             this.fileNamePlace.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.fileNamePlace.MaximumSize = new System.Drawing.Size(300, 17);
             this.fileNamePlace.MinimumSize = new System.Drawing.Size(300, 17);
@@ -120,7 +118,6 @@ namespace WinForm
             this.fileNamePlace.Size = new System.Drawing.Size(300, 17);
             this.fileNamePlace.TabIndex = 14;
             this.fileNamePlace.Text = "e.g maze.txt";
-            this.fileNamePlace.Click += new System.EventHandler(this.fileNamePlace_Click);
             // 
             // openFileBtn
             // 
@@ -128,7 +125,7 @@ namespace WinForm
             this.openFileBtn.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.openFileBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openFileBtn.ForeColor = System.Drawing.Color.Chartreuse;
-            this.openFileBtn.Location = new System.Drawing.Point(69, 283);
+            this.openFileBtn.Location = new System.Drawing.Point(-99, 283);
             this.openFileBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.openFileBtn.MaximumSize = new System.Drawing.Size(98, 28);
             this.openFileBtn.MinimumSize = new System.Drawing.Size(98, 28);
@@ -145,49 +142,45 @@ namespace WinForm
             this.algoritmaLabel.AutoSize = true;
             this.algoritmaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.algoritmaLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.algoritmaLabel.Location = new System.Drawing.Point(65, 367);
+            this.algoritmaLabel.Location = new System.Drawing.Point(-103, 367);
             this.algoritmaLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.algoritmaLabel.Name = "algoritmaLabel";
             this.algoritmaLabel.Size = new System.Drawing.Size(128, 31);
             this.algoritmaLabel.TabIndex = 16;
             this.algoritmaLabel.Text = "Algoritma";
-            this.algoritmaLabel.Click += new System.EventHandler(this.algoritmaLabel_Click);
             // 
             // SearchMethod
             // 
             this.SearchMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.SearchMethod.AutoSize = true;
-            this.SearchMethod.Controls.Add(this.radioButton1);
+            this.SearchMethod.Controls.Add(this.dfsMultivisitbtn);
             this.SearchMethod.Controls.Add(this.DFSbtn);
             this.SearchMethod.Controls.Add(this.BFSbtn);
             this.SearchMethod.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SearchMethod.ForeColor = System.Drawing.Color.Transparent;
-            this.SearchMethod.Location = new System.Drawing.Point(69, 407);
+            this.SearchMethod.Location = new System.Drawing.Point(-99, 407);
             this.SearchMethod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.SearchMethod.MaximumSize = new System.Drawing.Size(120, 138);
-            this.SearchMethod.MinimumSize = new System.Drawing.Size(120, 138);
+            this.SearchMethod.MaximumSize = new System.Drawing.Size(210, 130);
+            this.SearchMethod.MinimumSize = new System.Drawing.Size(210, 130);
             this.SearchMethod.Name = "SearchMethod";
             this.SearchMethod.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.SearchMethod.Size = new System.Drawing.Size(120, 138);
+            this.SearchMethod.Size = new System.Drawing.Size(210, 130);
             this.SearchMethod.TabIndex = 17;
             this.SearchMethod.TabStop = false;
-            this.SearchMethod.Enter += new System.EventHandler(this.SearchMethod_Enter);
             // 
-            // radioButton1
+            // dfsMultivisitbtn
             // 
-            this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.ForeColor = System.Drawing.Color.DarkRed;
-            this.radioButton1.Location = new System.Drawing.Point(4, 87);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(87, 41);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "TSP";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.dfsMultivisitbtn.AutoSize = true;
+            this.dfsMultivisitbtn.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dfsMultivisitbtn.ForeColor = System.Drawing.Color.DarkRed;
+            this.dfsMultivisitbtn.Location = new System.Drawing.Point(4, 52);
+            this.dfsMultivisitbtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dfsMultivisitbtn.Name = "dfsMultivisitbtn";
+            this.dfsMultivisitbtn.Size = new System.Drawing.Size(233, 41);
+            this.dfsMultivisitbtn.TabIndex = 3;
+            this.dfsMultivisitbtn.TabStop = true;
+            this.dfsMultivisitbtn.Text = "DFS (Multivisit)";
+            this.dfsMultivisitbtn.UseVisualStyleBackColor = true;
             // 
             // DFSbtn
             // 
@@ -202,14 +195,13 @@ namespace WinForm
             this.DFSbtn.TabStop = true;
             this.DFSbtn.Text = "DFS";
             this.DFSbtn.UseVisualStyleBackColor = true;
-            this.DFSbtn.CheckedChanged += new System.EventHandler(this.DFSbtn_CheckedChanged);
             // 
             // BFSbtn
             // 
             this.BFSbtn.AutoSize = true;
             this.BFSbtn.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BFSbtn.ForeColor = System.Drawing.Color.DarkRed;
-            this.BFSbtn.Location = new System.Drawing.Point(4, 52);
+            this.BFSbtn.Location = new System.Drawing.Point(4, 87);
             this.BFSbtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BFSbtn.Name = "BFSbtn";
             this.BFSbtn.Size = new System.Drawing.Size(87, 41);
@@ -217,7 +209,6 @@ namespace WinForm
             this.BFSbtn.TabStop = true;
             this.BFSbtn.Text = "BFS";
             this.BFSbtn.UseVisualStyleBackColor = true;
-            this.BFSbtn.CheckedChanged += new System.EventHandler(this.BFSbtn_CheckedChanged);
             // 
             // visualBtn
             // 
@@ -225,7 +216,7 @@ namespace WinForm
             this.visualBtn.BackColor = System.Drawing.Color.Red;
             this.visualBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.visualBtn.Location = new System.Drawing.Point(166, 686);
+            this.visualBtn.Location = new System.Drawing.Point(-2, 686);
             this.visualBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.visualBtn.MaximumSize = new System.Drawing.Size(135, 41);
             this.visualBtn.MinimumSize = new System.Drawing.Size(135, 41);
@@ -242,13 +233,12 @@ namespace WinForm
             this.outputLabel.AutoSize = true;
             this.outputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.outputLabel.Location = new System.Drawing.Point(419, 94);
+            this.outputLabel.Location = new System.Drawing.Point(335, 94);
             this.outputLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.outputLabel.Name = "outputLabel";
             this.outputLabel.Size = new System.Drawing.Size(83, 26);
             this.outputLabel.TabIndex = 19;
             this.outputLabel.Text = "Output";
-            this.outputLabel.Click += new System.EventHandler(this.outputLabel_Click);
             // 
             // searchButtton
             // 
@@ -271,7 +261,7 @@ namespace WinForm
             // 
             this.line.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.line.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.line.Location = new System.Drawing.Point(400, 94);
+            this.line.Location = new System.Drawing.Point(316, 94);
             this.line.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.line.MaximumSize = new System.Drawing.Size(1, 650);
             this.line.MinimumSize = new System.Drawing.Size(1, 650);
@@ -292,12 +282,11 @@ namespace WinForm
             this.routeLabel.AutoSize = true;
             this.routeLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.routeLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.routeLabel.Location = new System.Drawing.Point(418, 594);
+            this.routeLabel.Location = new System.Drawing.Point(334, 594);
             this.routeLabel.Name = "routeLabel";
             this.routeLabel.Size = new System.Drawing.Size(87, 29);
             this.routeLabel.TabIndex = 22;
             this.routeLabel.Text = "Route :";
-            this.routeLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // nodesLabel
             // 
@@ -305,12 +294,11 @@ namespace WinForm
             this.nodesLabel.AutoSize = true;
             this.nodesLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nodesLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.nodesLabel.Location = new System.Drawing.Point(961, 633);
+            this.nodesLabel.Location = new System.Drawing.Point(1051, 633);
             this.nodesLabel.Name = "nodesLabel";
             this.nodesLabel.Size = new System.Drawing.Size(90, 29);
             this.nodesLabel.TabIndex = 23;
             this.nodesLabel.Text = "Nodes :";
-            this.nodesLabel.Click += new System.EventHandler(this.label2_Click);
             // 
             // stepsLabel
             // 
@@ -318,12 +306,11 @@ namespace WinForm
             this.stepsLabel.AutoSize = true;
             this.stepsLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stepsLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.stepsLabel.Location = new System.Drawing.Point(961, 594);
+            this.stepsLabel.Location = new System.Drawing.Point(1051, 594);
             this.stepsLabel.Name = "stepsLabel";
             this.stepsLabel.Size = new System.Drawing.Size(93, 29);
             this.stepsLabel.TabIndex = 24;
             this.stepsLabel.Text = "Steps   :";
-            this.stepsLabel.Click += new System.EventHandler(this.label3_Click);
             // 
             // timeLabel
             // 
@@ -331,7 +318,7 @@ namespace WinForm
             this.timeLabel.AutoSize = true;
             this.timeLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.timeLabel.Location = new System.Drawing.Point(418, 633);
+            this.timeLabel.Location = new System.Drawing.Point(334, 633);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(181, 29);
             this.timeLabel.TabIndex = 25;
@@ -343,11 +330,11 @@ namespace WinForm
             this.routeText.AutoSize = true;
             this.routeText.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.routeText.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.routeText.Location = new System.Drawing.Point(511, 594);
+            this.routeText.Location = new System.Drawing.Point(427, 594);
             this.routeText.Name = "routeText";
-            this.routeText.Size = new System.Drawing.Size(168, 29);
+            this.routeText.Size = new System.Drawing.Size(21, 29);
             this.routeText.TabIndex = 26;
-            this.routeText.Text = "No route found";
+            this.routeText.Text = "-";
             // 
             // timeText
             // 
@@ -355,12 +342,11 @@ namespace WinForm
             this.timeText.AutoSize = true;
             this.timeText.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeText.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.timeText.Location = new System.Drawing.Point(605, 633);
+            this.timeText.Location = new System.Drawing.Point(521, 633);
             this.timeText.Name = "timeText";
             this.timeText.Size = new System.Drawing.Size(92, 29);
             this.timeText.TabIndex = 27;
             this.timeText.Text = "0,00 ms";
-            this.timeText.Click += new System.EventHandler(this.timeText_Click);
             // 
             // stepsText
             // 
@@ -368,7 +354,7 @@ namespace WinForm
             this.stepsText.AutoSize = true;
             this.stepsText.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stepsText.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.stepsText.Location = new System.Drawing.Point(1060, 594);
+            this.stepsText.Location = new System.Drawing.Point(1150, 594);
             this.stepsText.Name = "stepsText";
             this.stepsText.Size = new System.Drawing.Size(25, 29);
             this.stepsText.TabIndex = 28;
@@ -380,7 +366,7 @@ namespace WinForm
             this.nodesText.AutoSize = true;
             this.nodesText.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nodesText.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.nodesText.Location = new System.Drawing.Point(1060, 633);
+            this.nodesText.Location = new System.Drawing.Point(1150, 633);
             this.nodesText.Name = "nodesText";
             this.nodesText.Size = new System.Drawing.Size(25, 29);
             this.nodesText.TabIndex = 29;
@@ -392,7 +378,7 @@ namespace WinForm
             this.sleepLabel.AutoSize = true;
             this.sleepLabel.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sleepLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.sleepLabel.Location = new System.Drawing.Point(71, 594);
+            this.sleepLabel.Location = new System.Drawing.Point(-97, 594);
             this.sleepLabel.Name = "sleepLabel";
             this.sleepLabel.Size = new System.Drawing.Size(122, 29);
             this.sleepLabel.TabIndex = 32;
@@ -407,7 +393,7 @@ namespace WinForm
             0,
             0,
             0});
-            this.sleepInputBox.Location = new System.Drawing.Point(208, 594);
+            this.sleepInputBox.Location = new System.Drawing.Point(40, 594);
             this.sleepInputBox.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -416,7 +402,6 @@ namespace WinForm
             this.sleepInputBox.Name = "sleepInputBox";
             this.sleepInputBox.Size = new System.Drawing.Size(93, 33);
             this.sleepInputBox.TabIndex = 33;
-            this.sleepInputBox.ValueChanged += new System.EventHandler(this.sleepInputBox_ValueChanged);
             // 
             // msSleep
             // 
@@ -424,19 +409,33 @@ namespace WinForm
             this.msSleep.AutoSize = true;
             this.msSleep.Font = new System.Drawing.Font("Corbel", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.msSleep.ForeColor = System.Drawing.Color.DarkRed;
-            this.msSleep.Location = new System.Drawing.Point(317, 594);
+            this.msSleep.Location = new System.Drawing.Point(149, 594);
             this.msSleep.Name = "msSleep";
             this.msSleep.Size = new System.Drawing.Size(43, 29);
             this.msSleep.TabIndex = 34;
             this.msSleep.Text = "ms";
-            this.msSleep.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // TSPcheckBox
+            // 
+            this.TSPcheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.TSPcheckBox.AutoSize = true;
+            this.TSPcheckBox.Font = new System.Drawing.Font("Corbel", 22.2F, System.Drawing.FontStyle.Bold);
+            this.TSPcheckBox.ForeColor = System.Drawing.Color.DarkRed;
+            this.TSPcheckBox.Location = new System.Drawing.Point(181, 424);
+            this.TSPcheckBox.Name = "TSPcheckBox";
+            this.TSPcheckBox.Size = new System.Drawing.Size(88, 41);
+            this.TSPcheckBox.TabIndex = 35;
+            this.TSPcheckBox.Text = "TSP";
+            this.TSPcheckBox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(1028, 609);
+            this.Controls.Add(this.TSPcheckBox);
             this.Controls.Add(this.msSleep);
             this.Controls.Add(this.sleepInputBox);
             this.Controls.Add(this.sleepLabel);
@@ -459,10 +458,10 @@ namespace WinForm
             this.Controls.Add(this.filenameLabel);
             this.Controls.Add(this.inputLabel);
             this.Controls.Add(this.title);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Treasure Hunt Solver";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.SearchMethod.ResumeLayout(false);
             this.SearchMethod.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.line)).EndInit();
@@ -499,7 +498,8 @@ namespace WinForm
         private System.Windows.Forms.Label sleepLabel;
         private System.Windows.Forms.NumericUpDown sleepInputBox;
         private System.Windows.Forms.Label msSleep;
-        internal System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.CheckBox TSPcheckBox;
+        internal System.Windows.Forms.RadioButton dfsMultivisitbtn;
     }
 }
 
