@@ -130,21 +130,14 @@ namespace WinForm
                 stopwatch.Stop();
 
                 string routetext = "";
+                path = solver.path;
 
-                if (solver.path == "")
+                for (int i = 0; i < path.Length; i++)
                 {
-                    routetext = "Route not found";
-                }
-                else
-                {
-                    path = solver.path;
-                    for (int i = 0; i < path.Length; i++)
+                    routetext += path[i];
+                    if (i != path.Length - 1)
                     {
-                        routetext += path[i];
-                        if (i != path.Length - 1)
-                        {
-                            routetext += " - ";
-                        }
+                        routetext += " - ";
                     }
                 }
 
@@ -175,20 +168,23 @@ namespace WinForm
                 simpulHidup.Add(new Tuple<int, int>(start[0], start[1]));
                 BFSMazeSolver solver = new BFSMazeSolver(mapInt, goalStates);
 
-                stopwatch.Start();
+                
                 if (TSPcheckBox.Checked == true)
                 {
                     string[] treasurePath = new string[goalStates.Count+1];
+                    stopwatch.Start();
                     solver.Solve(simpulHidup[0], ref treasurePath, ref simpulHidup, true, Decimal.ToInt32(sleepInputBox.Value));
+                    stopwatch.Stop();
                 }
                 else
                 {
                     string[] treasurePath = new string[goalStates.Count];
+                    stopwatch.Start();
                     solver.Solve(simpulHidup[0], ref treasurePath, ref simpulHidup, false, Decimal.ToInt32(sleepInputBox.Value));
+                    stopwatch.Stop();
                 }
                 path = solver.path;
-                stopwatch.Stop();
-
+                
                 string routetext = "";
                 for (int i = 0; i < path.Length; i++)
                 {

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{59C3DEC0-B6A5-4994-B556-4923BB27D44A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>tes</RootNamespace>
-    <AssemblyName>tes</AssemblyName>
+    <RootNamespace>TreasureHuntSolver</RootNamespace>
+    <AssemblyName>TreasureHuntSolver</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
