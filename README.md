@@ -3,10 +3,10 @@
 ## Daftar Isi
 
 - [Deskripsi Program](#deskripsi-program)
-- [Anggota Kelompok](#anggota-kelompok)
-- [Daftar Pembagian Tugas](#daftar-pembagian-tugas)
+- [Fitur Pada Program](#fitur-pada-program)
 - [Cara Menjalankan Program](#cara-menjalankan-program)
 - [Cara Menggunakan Program](#cara-menggunakan-program)
+- [Daftar Anggota dan Pembagian Tugas](#daftar-anggota-dan-pembagian-tugas)
 - [Screenshots](#screenshots)
 
 ## Deskripsi Program
@@ -21,7 +21,7 @@ Input maze berbentuk segi-empat dengan spesifikasi simbol sebagai berikut :
 - R : Grid yang mungkin diakses / sebuah lintasan
 - X : Grid halangan yang tidak dapat diakses
 
-## Fitur Pencarian
+## Fitur Pada Program
 
 Terdapat 3 fitur utama algoritma pencarian, yaitu:
 
@@ -32,22 +32,6 @@ Terdapat 3 fitur utama algoritma pencarian, yaitu:
 Terdapat juga tambahan untuk penyelesaian permasalahan TSP (Traveling Salesman Problem) pada algoritma BFS
 
 Program juga memiliki fitur sleep time yang mengatur durasi atau jeda visualisasi setiap langkah selama proses pencarian solusi
-
-## Anggota Kelompok
-
-| NIM      | Nama                           |
-| -------- | ------------------------------ |
-| 13521063 | Salomo Reinhart Gregory Manalu |
-| 13521071 | Margaretha Olivia Haryono      |
-| 13521160 | Dimas Sakti Widyatmaja         |
-
-## Daftar Pembagian Tugas
-
-| Bagian Program | Yang Mengerjakan |
-| -------------- | ---------------- |
-| GUI            | Salomo           |
-| DFS            | Olivia           |
-| BFS            | Sakti            |
 
 ## Cara Menjalankan Program
 
@@ -92,6 +76,14 @@ atau pada Linux, jalankan
    - treasure (T) yang telah dikunjungi : biru
    - titik awal (K) telah dikunjungi : ungu muda
 6. Setelah proses pencarian selesai, program menampilkan rute pencariannya beserta waktu eksekusi, jumlah langkah, dan jumlah nodes yang dikunjungi selama proses pencarian.
+
+## Daftar Anggota dan Pembagian Tugas
+
+| NIM      | Nama                           | Bagian Program |
+| -------- | ------------------------------ | -------------- |
+| 13521063 | Salomo Reinhart Gregory Manalu | GUI            |
+| 13521071 | Margaretha Olivia Haryono      | DFS            |
+| 13521160 | Dimas Sakti Widyatmaja         | BFS            |
 
 # Screenshots
 
