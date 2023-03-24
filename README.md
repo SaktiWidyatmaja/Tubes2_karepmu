@@ -7,7 +7,6 @@
 - [Cara Menjalankan Program](#cara-menjalankan-program)
 - [Cara Menggunakan Program](#cara-menggunakan-program)
 - [Daftar Anggota dan Pembagian Tugas](#daftar-anggota-dan-pembagian-tugas)
-- [Screenshots](#screenshots)
 
 ## Deskripsi Program
 
@@ -84,7 +83,3 @@ atau pada Linux, jalankan
 | 13521063 | Salomo Reinhart Gregory Manalu | GUI            |
 | 13521071 | Margaretha Olivia Haryono      | DFS            |
 | 13521160 | Dimas Sakti Widyatmaja         | BFS            |
-
-# Screenshots
-
-![screenshots](doc/screenshot.JPG)
