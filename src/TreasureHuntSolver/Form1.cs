@@ -102,9 +102,15 @@ namespace WinForm
 
                 if (routetext.Length > 73)
                 {
-                    Font newSizeFont = new Font(routeText.Font.FontFamily, 11, routeText.Font.Style);
+                    Font newSizeFont = new Font(routeText.Font.FontFamily, 9, routeText.Font.Style);
                     routeText.Font = newSizeFont;
-                    routeText.Location = new Point(594, 739);
+                    routeText.Location = new Point(695, 603);
+                }
+                else
+                {
+                    Font SizeFont = new Font(routeText.Font.FontFamily, 18, routeText.Font.Style);
+                    routeText.Font = SizeFont;
+                    routeText.Location = new Point(695, 595);
                 }
 
                 routeText.Text = routetext;
@@ -141,11 +147,18 @@ namespace WinForm
                     }
                 }
 
+
                 if (routetext.Length > 73)
                 {
-                    Font newSizeFont = new Font(routeText.Font.FontFamily, 11, routeText.Font.Style);
+                    Font newSizeFont = new Font(routeText.Font.FontFamily, 9, routeText.Font.Style);
                     routeText.Font = newSizeFont;
-                    routeText.Location = new Point(594, 739);
+                    routeText.Location = new Point(695, 603);
+                }
+                else
+                {
+                    Font SizeFont = new Font(routeText.Font.FontFamily, 18, routeText.Font.Style);
+                    routeText.Font = SizeFont;
+                    routeText.Location = new Point(695, 595);
                 }
 
                 routeText.Text = routetext;
@@ -197,9 +210,15 @@ namespace WinForm
 
                 if (routetext.Length > 73)
                 {
-                    Font newSizeFont = new Font(routeText.Font.FontFamily, 11, routeText.Font.Style);
+                    Font newSizeFont = new Font(routeText.Font.FontFamily, 9, routeText.Font.Style);
                     routeText.Font = newSizeFont;
-                    routeText.Location = new Point(594, 739);
+                    routeText.Location = new Point(695, 603);
+                }
+                else
+                {
+                    Font SizeFont = new Font(routeText.Font.FontFamily, 18, routeText.Font.Style);
+                    routeText.Font = SizeFont;
+                    routeText.Location = new Point(695, 595);
                 }
 
                 routeText.Text = routetext;
@@ -249,6 +268,8 @@ namespace WinForm
             Thread.Sleep(sleepTime);
         }
 
+        private System.Windows.Forms.Label errorText = new System.Windows.Forms.Label();
+
         private void visualBtn_Click(object sender, EventArgs e)
         {
             try
@@ -259,7 +280,6 @@ namespace WinForm
             {
                 Console.WriteLine("input tidak valid");
                 Console.WriteLine($"Error : Invalid Data Input");
-                System.Windows.Forms.Label errorText = new System.Windows.Forms.Label();
                 errorText.Text = "INPUT FILE INVALID!";
                 Font newFont = new Font(errorText.Font.FontFamily, 50, errorText.Font.Style);
                 errorText.Font = newFont;
@@ -372,6 +392,7 @@ namespace WinForm
                         Controls.Remove(imageMatrix[i, j]);
                     }
                 }
+                Controls.Remove(errorText);
                 this.row = 0;
                 this.col = 0;
                 this.duration = 0;
@@ -381,6 +402,10 @@ namespace WinForm
                 path = "";
                 mapInt = new int[0, 0];
                 goalStates = new List<Tuple<int, int>>();
+                routeText.Text = "";
+                timeText.Text = "0,00 ms";
+                nodesText.Text = "0";
+                stepsText.Text = "0";
             }
 
             this.row = lines.Length;
@@ -389,7 +414,7 @@ namespace WinForm
 
             PictureBox backGroundMap = new PictureBox();
             backGroundMap.BackColor = Color.Black;
-            backGroundMap.Location = new Point(587, 124);
+            backGroundMap.Location = new Point(590, 124);
             backGroundMap.Size = new Size(880, 460);
             Controls.Add(backGroundMap);
             backGroundMap.SendToBack();
@@ -438,6 +463,16 @@ namespace WinForm
                     imageMatrix[i, j].BringToFront();
                 }
             }
+        }
+
+        private void outputLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
