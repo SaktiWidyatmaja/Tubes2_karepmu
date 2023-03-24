@@ -233,7 +233,6 @@ namespace WinForm
             this.outputLabel.Size = new System.Drawing.Size(106, 32);
             this.outputLabel.TabIndex = 19;
             this.outputLabel.Text = "Output";
-            this.outputLabel.Click += new System.EventHandler(this.outputLabel_Click);
             // 
             // searchButtton
             // 
@@ -468,7 +467,6 @@ namespace WinForm
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Treasure Hunt Solver";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.SearchMethod.ResumeLayout(false);
             this.SearchMethod.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.line)).EndInit();

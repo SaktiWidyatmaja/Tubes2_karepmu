@@ -67,13 +67,6 @@ namespace WinForm
             {
                 Console.WriteLine("search with DFS");
 
-                //if (TSPcheckBox.Checked)
-                //{
-                //    Console.WriteLine("TSP");
-                //    goalStates.Add(new Tuple<int, int>(start[0], start[1]));
-                //    goalStates.Add(new Tuple<int, int>(start[0], start[1]));
-                //}
-
                 Stopwatch stopwatch = new Stopwatch();
                 DFSMazeSolver solver = new DFSMazeSolver(mapInt, goalStates, start);
 
@@ -269,28 +262,30 @@ namespace WinForm
         }
 
         private System.Windows.Forms.Label errorText = new System.Windows.Forms.Label();
+        private Boolean error = false;
 
         private void visualBtn_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("input tidak valid");
+            Console.WriteLine($"Error : Invalid Data Input");
+            errorText.Text = "INPUT FILE INVALID!";
+            Font newFont = new Font(errorText.Font.FontFamily, 50, errorText.Font.Style);
+            errorText.Font = newFont;
+            errorText.Location = new Point(638, 300);
+            errorText.Size = new Size(700, 80);
+            errorText.BackColor = Color.Black;
+            errorText.ForeColor = Color.Red;
+            errorText.Anchor = AnchorStyles.Top;
+            errorText.Anchor = AnchorStyles.Bottom;
             try
             {
                 Map();
             }
             catch (Exception err)
             {
-                Console.WriteLine("input tidak valid");
-                Console.WriteLine($"Error : Invalid Data Input");
-                errorText.Text = "INPUT FILE INVALID!";
-                Font newFont = new Font(errorText.Font.FontFamily, 50, errorText.Font.Style);
-                errorText.Font = newFont;
-                errorText.Location = new Point(638, 300);
-                errorText.Size = new Size(700, 80);
-                errorText.BackColor = Color.Black;
-                errorText.ForeColor = Color.Red;
-                errorText.Anchor = AnchorStyles.Top;
-                errorText.Anchor = AnchorStyles.Bottom;
-                errorText.BringToFront();
                 Controls.Add(errorText);
+                //errorText.BringToFront();
+                //this.error = true;
             }
         }
 
@@ -392,7 +387,6 @@ namespace WinForm
                         Controls.Remove(imageMatrix[i, j]);
                     }
                 }
-                Controls.Remove(errorText);
                 this.row = 0;
                 this.col = 0;
                 this.duration = 0;
@@ -406,6 +400,11 @@ namespace WinForm
                 timeText.Text = "0,00 ms";
                 nodesText.Text = "0";
                 stepsText.Text = "0";
+            }
+
+            if (Controls.Contains(errorText))
+            {
+                Controls.Remove(errorText);
             }
 
             this.row = lines.Length;
@@ -463,16 +462,6 @@ namespace WinForm
                     imageMatrix[i, j].BringToFront();
                 }
             }
-        }
-
-        private void outputLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
