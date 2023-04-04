@@ -82,4 +82,4 @@ atau pada Linux, jalankan
 | -------- | ------------------------------ | -------------- |
 | 13521063 | Salomo Reinhart Gregory Manalu | GUI            |
 | 13521071 | Margaretha Olivia Haryono      | DFS            |
-| 13521160 | Dimas Sakti Widyatmaja         | BFS            |
+| 13521160 | M. Dimas Sakti Widyatmaja      | BFS            |
